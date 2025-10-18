@@ -10,7 +10,7 @@ import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/google_login_btn.dart';
 
-import 'package:geography_geyser/views/login/login.dart';
+import 'package:geography_geyser/views/auth/login/login.dart';
 
 class GeoSignUpScreen extends StatefulWidget {
   const GeoSignUpScreen({super.key});

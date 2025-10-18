@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^2.2.1
   google_fonts: ^6.3.2
   pinput: ^5.0.2
+  animate_do: ^4.2.0
 
 dev_dependencies:
   flutter_test:
@@ -34,4 +35,4 @@ flutter:
   fonts:
     - family: SegoeUI
       fonts:
-        - asset: assets/fonts/segoueuithis.ttf
+        - asset: assets/fonts/segoeui.ttf

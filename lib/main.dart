@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geography_geyser/views/sign_up/geo_sign_up.dart';
+import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
 
 void main() {
   runApp(const MyApp());
