@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             // Profile section
-            AppSpacing.h80,
+            AppSpacing.h40,
             Column(
               children: [
                 // Circular profile image with border

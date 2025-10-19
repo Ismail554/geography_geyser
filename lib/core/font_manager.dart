@@ -10,28 +10,25 @@ class FontManager {
 
   // Font Weights
   static const FontWeight w400 = FontWeight.w400;
+  static const FontWeight w600 = FontWeight.w600;
   static const FontWeight w700 = FontWeight.w700;
+  static const FontWeight w800 = FontWeight.w800;
 
   // Default Text Colors
   static const Color mainTextColor = AppColors.black;
   static final Color subtitleColor = AppColors.grey4B;
-  static const Color subSubtitleColor = AppColors.lightGrey;
+  static const Color subSubtitleColor = AppColors.grey;
 
   // ================== Text Styles ==================
 
   static TextStyle bigTitle() => GoogleFonts.montserrat(
     fontSize: 24,
-    fontWeight: FontWeight.w800,
-    color: Colors.black,
-  );
-  static TextStyle boldTitle() => GoogleFonts.notoSansOsage(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.bold,
     color: Colors.black,
   );
   // Title Text
   static TextStyle titleText() => TextStyle(
-    // fontFamily: t,
+    fontFamily: inter,
     fontSize: 22.sp,
     fontWeight: w700,
     color: mainTextColor,
@@ -40,29 +37,58 @@ class FontManager {
   );
 
   // Subtitle Text
-  static TextStyle subtitleText() => GoogleFonts.montserrat(
+  static TextStyle subtitleText({
+    double fontSize = 14,
+    Color color = Colors.grey,
+    double height = 1,
+  }) => GoogleFonts.montserrat(
+    fontSize: fontSize.sp,
+    fontWeight: FontWeight.w400,
+    color: color,
+    height: height,
+    letterSpacing: 0.0,
+  );
+
+  // General Text
+  static TextStyle generalText({
+    double fontSize = 12,
+    Color color = Colors.grey,
+  }) => GoogleFonts.montserrat(
+    fontSize: fontSize.sp,
+    fontWeight: FontWeight.w500,
+    color: color,
+    height: 1.0,
+    letterSpacing: 0.0,
+  );
+
+  static TextStyle boldSubtitleText() => GoogleFonts.montserrat(
     fontSize: 14.sp,
-    fontWeight: w400,
-    color: subtitleColor,
+    fontWeight: w600,
+    color: mainTextColor,
     height: 1.0,
     letterSpacing: 0.0,
   );
 
   // Sub-subtitle Text
-  static TextStyle subSubtitleText() => GoogleFonts.montserrat(
-    fontSize: 14.sp,
-    fontWeight: w700,
-    color: AppColors.primaryColor,
+  static TextStyle subSubtitleText({
+    double fontSize = 12,
+    color = AppColors.grey,
+  }) => GoogleFonts.montserrat(
+    fontSize: fontSize.sp,
+    fontWeight: w400,
+    color: color,
     height: 1.0,
     letterSpacing: 0.0,
   );
 
   // Header Subtitle
-  static TextStyle headerSubtitleText() => TextStyle(
-    fontFamily: inter,
-    fontSize: 14.sp,
-    fontWeight: w400,
-    color: subtitleColor,
+  static TextStyle headerSubtitleText({
+    double fontSize = 14,
+    Color color = Colors.black,
+  }) => GoogleFonts.montserrat(
+    fontSize: fontSize,
+    fontWeight: w600,
+    color: color,
     height: 1.0,
     letterSpacing: 0.0,
   );
@@ -112,5 +138,41 @@ class FontManager {
     color: AppColors.white, // text color
     height: 1.0,
     letterSpacing: 0.0,
+  );
+
+  // ======= Details page ====//
+  // Header Subtitle
+  static TextStyle boldTitleText({
+    double fontSize = 22,
+    Color color = Colors.black,
+  }) => GoogleFonts.montserrat(
+    fontSize: fontSize.sp,
+    fontWeight: w700,
+    color: color,
+    height: 1.0,
+    letterSpacing: 0.0,
+  );
+
+  // Header Subtitle
+  static TextStyle headlineText({
+    double fontSize = 16,
+    Color color = Colors.black,
+  }) => GoogleFonts.montserrat(
+    fontSize: fontSize,
+    fontWeight: w600,
+    color: color,
+    height: 1.0,
+    letterSpacing: 0.0,
+  );
+  // Header Subtitle
+  static TextStyle boldHeading({
+    double fontSize = 36,
+    Color color = Colors.green,
+  }) => GoogleFonts.robotoFlex(
+    fontSize: fontSize.sp,
+    fontWeight: w600,
+    color: color,
+    height: 1.0,
+    letterSpacing: 0.72.sp,
   );
 }
