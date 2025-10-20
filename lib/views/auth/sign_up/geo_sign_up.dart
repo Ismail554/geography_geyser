@@ -222,7 +222,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
+                                      builder: (context) => LoginScreen(),
                                     ),
                                   );
                                 },

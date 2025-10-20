@@ -147,7 +147,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       ),
                       AppSpacing.h10,
                       Text(
-                        AppStrings.verEmail,
+                        AppStrings.otpInstructionEmailExample,
                         style: FontManager.subSubtitleText(),
                       ),
                       AppSpacing.h32,

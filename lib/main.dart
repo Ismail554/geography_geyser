@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/congratulations.dart';
+import 'package:geography_geyser/views/auth/forgot_pass/verify_screen.dart';
+import 'package:geography_geyser/views/auth/login/login.dart';
 import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
 
 void main() {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(),
         home: child,
       ),
-      child: CongratulationsScreen(),
+      child: LoginScreen(),
     );
   }
 }

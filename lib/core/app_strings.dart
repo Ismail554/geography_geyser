@@ -3,10 +3,7 @@ class AppStrings {
   static const String appName = "Newwork";
 
   // Welcome / Intro
-  static const String welcomeText = "Welcome to Newworkx";
-  static const String signIn = "Sign In to your Newwork";
-  static const String forgotPassword = "Forgot password?";
-  static const String loginButton = "Log In";
+
   static const String continueWithGoogle = "Continue with Google";
   static const String continueWithApple = "Continue with Apple";
   static const String signUpPrompt = "Don't have an account? Sign Up";
@@ -20,20 +17,223 @@ class AppStrings {
   static const String normalUser = "Normal User";
 
   // Normal Sign Up
-  static const String fullName = "Full Name";
-  static const String email = "Email";
-  static const String phone = "Phone";
-  static const String password = "Password";
-  static const String confirmPassword = "Confirm Password";
-  static const String createAccountButton = "Create account";
-  static const String courtRegisterNumber = "Court Register Number";
+  static const String logInTitle = "Login";
+  static const String passwordLabel = "Password";
+  static const String passwordPlaceholder = "Enter Password";
+  static const String forgotPassword = "Forgot Password?";
+  static const String logInButton = "Login";
+  static const String orLoginWith = "OR Login With";
+  static const String googleLogin =
+      "Google"; // This is the text near the Google icon
+  static const String noAccountPrefix = "Don't have account?";
+  static const String createAccountLink = "Create Account";
+
+  // --- Screen 1: Forgot_Pass_01 (Enter Email) ---
+  static const String screenTitleResetPassword = "Reset password";
+  static const String forgotYourPasswordTitle = "Forgot your Password ?";
+  static const String forgotPasswordInstruction =
+      "Enter the email address associated with your account and we will send you OTP to reset you passwprd"; // Note: "passwprd" is a typo in the original image
+  static const String emailLabel = "Email";
+  static const String emailPlaceholder = "Enter Email";
+  static const String backToLogin = "Back to Login";
+
+  // --- Screen 2 & 3: Forgot_Pass_02 & Forgot_Pass_03 (OTP Verification) ---
+  static const String backButton = "Back"; // Re-used across screens
+  static const String otpVerificationTitle = "OTP Verification";
+  static const String otpInstructionPrefix = "Enter the OTP sent to your Email";
+  static const String resendOtpLink = "Resend OTP";
+  static const String otpNotReceivedPrefix = "OTP not Received ?";
+  static const String verifyButton = "Verify";
+
+  // --- Screen 4: Forgot_Pass_04 (New Password) ---
+  static const String newPasswordTitle = "New Password";
+  static const String createNewPasswordLabel = "Create new Password";
+  static const String newPasswordPlaceholder = "Enter new password";
+  static const String retypePasswordLabel = "Re-Type Password";
+  static const String retypePasswordPlaceholder = "confirm password";
+  static const String saveButton = "Save";
+
+  // --- Screen 2: Success Message ---
+  static const String passwordChangedTitle = "Password Changed!";
+  static const String passwordChangedMessage =
+      "Your password has been changed successfully.";
+  static const String backToLoginButton = "Back To Login";
+
+  // --- Screen 1: Create Account / Sign Up ---
+  static const String createAccountTitle = "Create account";
+  static const String fullNameLabel = "Full Name";
+  static const String fullNamePlaceholder =
+      "Enter Email"; // Note: Placeholder text is "Enter Email" under "Full Name"
+  static const String confirmPasswordLabel = "Confirm Password";
+  static const String confirmPasswordPlaceholder = "Enter Password";
+  static const String signUpButton = "Sign Up";
+  static const String alreadyHaveAccountPrefix = "Already have Account?";
+  static const String loginLink = "Login";
+
+  // --- Screen 2: OTP Verification ---
+  static const String otpInstructionEmailExample =
+      "j***e.smith@gmail.com"; // Example email shown for context
+  // --- Image 1: Profile/Settings Screen ---
+
+  static const String userName = "Simon Anderson";
+  static const String userXp = "XP:39,900";
+  static const String editProfileOption = "Edit Profile";
+  static const String moduleSettingOption = "Module Setting";
+  static const String logOutOption = "Log out";
+  static const String progressTitle = "Progress";
+  static const String quizAttemptedLabel = "Quiz Attempted";
+  static const String quizAttemptedValue = "130";
+  static const String averageScoreLabel = "Average Score";
+  static const String averageScoreValue = "85%";
+  static const String subjectCoveredLabel = "Subject Covered";
+  static const String subjectCoveredValue = "8";
+  static const String subjectPerformanceTitle = "Subject Performance";
+  static const String tectonicsSubject = "Tectonics";
+  static const String waterCycleSubject = "Water Cycle";
+  static const String carbonCycleSubject = "Carbon Cycle";
+  static const String globalisationSubject = "Globalisation";
+  static const String migrationSubject = "Migration";
+  static const String coastsSubject = "Coasts";
+  static const String glaciersSubject = "Glaciers";
+  static const String regeneratingPlacesSubject = "Regenerating Places";
+
+  // --- Image 2: Success Message ---
+  static const String congratulationsTitle = "Congratulations!!";
+  static const String accountCreatedMessage =
+      "Your account has been created successfully.";
+
+  // --- Image 3: Home/Dashboard Screen ---
+  static const String strongestModuleLabel = "Strongest Module: Water Cycle";
+  static const String averageScoreStatLabel = "Average Score";
+  static const String averageScoreStatValue = "85%";
+  static const String dailyQuizStreakLabel = "Daily Quiz Streak";
+  static const String dailyQuizStreakValue = "08";
+  static const String totalAttemptQuizLabel = "Total Attempt Quiz";
+  static const String totalAttemptQuizValue = "130";
+  static const String lastActivityLabel = "Last Activity";
+  static const String lastQuizTime = "Last quiz: 2 hours ago";
+  static const String lastQuizTopic = "Topic: Globalization";
+  static const String studentStatsButton = "Student Stats";
+  static const String takeAQuizButton = "Take a Quiz";
+  static const String moduleSettingsButton = "Module Settings";
+  static const String navBarHome = "Home";
+  static const String navBarModule = "Module";
+  static const String navBarProfile = "Profile";
+
+  // --- Image 1: Settings Options ---
+  static const String generalSetting = "General Setting";
+  static const String privacySetting = "Privacy Setting";
+
+  // --- Image 2: Logout Confirmation Dialog ---
+  static const String areYouSureTitle = "Are You Sure?";
+  static const String logoutConfirmationMessage =
+      "You will be logged out of you account"; // Note: "you" instead of "your" in original image
+  static const String cancelButton = "Cancel";
+  static const String logOutButton = "Log Out";
+
+  // --- Image 3: Change Password Form ---
+  static const String currentPasswordLabel = "Current Password";
+  static const String newPasswordLabel = "New Password";
+  static const String confirmNewPasswordLabel = "Confirm New Password";
+  static const String forgotPasswordLink = "Forgot Password?";
+  static const String changePasswordButton = "Change Password";
+
+  // --- Image 4: Edit Profile Form ---
+  static const String chooseAvatarLink = "Choose Avatar";
+  static const String nameLabel = "Name";
+  static const String nameFieldValue = "Simon Anderson"; // Field value example
+  static const String emailFieldValue =
+      "Simon123@gmail.com"; // Field value example
+  static const String currentPasswordEditLabel = "Current Password";
+  static const String saveChangesButton = "Save Changes";
+  // --- Image Set 1: Quiz Settings (Question Count) ---
+  static const String questionCount10 = "10 QUESTION";
+  static const String questionCount20 = "20 Question";
+  static const String questionCount30 = "30 Question";
+  static const String questionCount40 = "40 Question";
+  static const String questionCount50 = "50 Question";
+  static const String continueButton = "Continue";
+
+  // --- Image Set 2: Quiz Question (Migration Quiz) ---
+  static const String quizTitleMigrations = "Migrations Quiz";
+  static const String questionNumberFormat = "Question 4/30";
+  static const String timeLeftFormat =
+      "Left: 27"; // This includes the time value
+  static const String questionWhatIsMigration = "What is migration?";
+  static const String optionAWaterCycle = "A) Water cycle";
+  static const String optionBMovementOfPeople =
+      "B) Movement of people or animal";
+  static const String optionCRockBreaking = "C) Rock breaking";
+  static const String optionDPlantProcess = "D) Plant process";
+  static const String prevButton = "Prev";
+  static const String nextButton = "Next";
+
+  // --- Image Set 3: Module Settings (Optional Modules) ---
+  static const String moduleSettingTitle = "Module Setting";
+  static const String selectOptionalModuleInstruction =
+      "Select Your Optional Module";
+  static const String moduleCoasts = "COASTS";
+  static const String moduleGlaciers = "GLACIERS";
+  static const String moduleRegeneratingPlace = "REGENERATING PLACE";
+  static const String moduleMigration = "MIGRATION";
+  static const String moduleHHRI = "HHRI";
+  static const String saveModuleButton = "Save Module";
+
+  // --- Image Set 4: Module Selection ---
+
+  static const String selectModuleTitle = "Select Module";
+  static const String moduleTectonics = "TECTONICS";
+  // COASTS is a repeat
+  // WATER CYCLE is a repeat (from previous extracted strings)
+  static const String moduleCarbonCycle = "CARBON CYCLE";
+  static const String moduleGlobalization = "GLOBALIZATION";
+  static const String moduleSuperpowers = "SUPERPOWERS";
+  static const String moduleMigrations = "MIGRATIONS";
+  static const String moduleRegeratingPlaces =
+      "REGERATING PLACES"; // Note: Appears to be a misspelling of 'Regenerating'
+  static const String moduleSynoptic = "SYNOPTIC";
+
+  // --- Image Set 5: Time Selection ---
+  static const String selectTimeTitle = "Select Time";
+  static const String time2Minutes = "2 MINUTES";
+  static const String time5Minutes = "5 MINUTES";
+  static const String time10Minutes = "10 MINUTES";
+  static const String time15Minutes = "15 MINUTES";
+  static const String time20Minutes = "20 MINUTES";
+  static const String customizeTimeLabel = "Customize your Time (Minutes)";
+  static const String customizeTimeExample = "Ex: 12 minutes";
+
+  // --- Image 1: Quiz Cancellation Dialog ---
+  static const String cancelQuizConfirmationTitle =
+      "Are you sure you want to cancel the quiz?";
+  static const String cancelQuizDeductionMessage =
+      "If you cancel now, 200 XP will be deducted from your account.*";
+  static const String quitButton = "Quit";
+
+  // --- Image 2: Quiz Complete Screen ---
+  static const String quizCompleteTitle = "Quiz Complete!";
+  static const String correctLabel = "Correct";
+  static const String correctValue = "22";
+  static const String incorrectLabel = "Incorrect";
+  static const String incorrectValue = "08";
+  static const String scoreLabel = "Score";
+  static const String scoreValue = "80%";
+  static const String gradeLabel = "Grade";
+  static const String gradeValue = "A";
+  static const String xpGainedLabel = "XP Gained";
+  static const String xpGainedValue = "+130 XP";
+  static const String attendAnotherQuizInstruction = "Attend another Quiz";
+  static const String quizButtonCarbonCycle = "Carbon Cycle";
+  static const String quizButtonCoasts = "Coasts";
+  static const String retryQuizButton = "Retry Quiz";
+  static const String returnMenuButton = "Return Menu";
 
   // Verify
   static const String verifyAccountTitle = "Verify your account";
   static const String almostDone = "Almost done!";
   static const String verificationCodePrompt = "Enter verification code";
   static const String verificationCodeSent = "We sent a 6-digit code to ";
-  static const String verEmail = "Cha*****@cmail.com";
+
   static const String passChanged = "Password Changed!";
   static const String verifyAccountButton = "Verify Account";
   static const String resendCode =
@@ -43,7 +243,7 @@ class AppStrings {
 
   // Forgot Password
   static const String forgotPasswordTitle = "Forgot password";
-  static const String enterEmailPhone = "Enter your email address";
+
   static const String sendButton = "Send";
   static const String signUpForNewAccount = "Sign up";
 
@@ -55,293 +255,9 @@ class AppStrings {
   static const String resetPasswordButton = "Reset password";
   static const String newPasswordInstruction =
       "Your new password must be different from previously used passwords.";
-  // Registration Payment
-  static const String registrationPaymentTitle = "Registration Payment";
-  static const String registrationPaymentDescription =
-      "A one-time registration fee of \$150 is required to unlock your training and career support.";
-  static const String paymentBreakdown = "Payment Breakdown";
-  static const String baseFee = "Base Fee";
-  static const String taxServiceCharge = "Taxes/Service Charge";
-  static const String totalDue = "Total Due";
-  static const String paymentMethod = "Payment Method";
-  static const String payButton = "Pay";
 
-  // Payment Success
-  static const String paymentSuccessful = "Payment Successful!";
-
-  // Career Path
-  static const String findCareerPath = "Find Your Career Path";
-  static const String careerPathDescription =
-      "Answer 6 quick questions to discover real skills and real jobs-fast.";
   static const String startQuizButton = "Start Quiz";
 
-  // Interests & Motivation
-  static const String interestsMotivationTitle = "Interests & Motivation";
-  static const String workExcitesYou =
-      "Which type of work excites you the most?";
-  static const String workingWithPeople = "Working with people";
-  static const String workingWithTechnology = "Working with technology";
-  static const String workingWithToolsHands = "Working with tools/hands";
-  static const String organizingPlanning = "Organizing and planning";
-  static const String creativeOrDesign = "Creative or design";
-  // Work Environment
-  static const String workEnvironmentTitle = "Work Environment";
-  static const String workEnvironmentQuestion =
-      "Where would you feel most comfortable working?";
-  static const String workEnvironmentIndoors = "Indoors";
-  static const String workEnvironmentOutdoors = "Outdoors";
-  static const String workEnvironmentFlexibleRemote = "Flexible / Remote";
-
-  // Training Flexibility
-  static const String trainingFlexibilityTitle = "Training Flexibility";
-  static const String trainingFlexibilityQuestion =
-      "How much time can you commit to training before starting a job?";
-  static const String trainingFlexibilityLessThan1Month = "Less than 1 month";
-  static const String trainingFlexibility1To3Months = "1–3 months";
-  static const String trainingFlexibility3To6Months = "3–6 months";
-  static const String trainingFlexibilityMoreThan6Months = "6+ months";
-
-  // Strengths & Skills
-  static const String strengthsSkillsTitle = "Strengths & Skills";
-  static const String strengthsSkillsQuestion =
-      "Which of these best describes your current strengths?";
-  static const String strengthsSkillsCommunicationTeamwork =
-      "Communication & teamwork";
-  static const String strengthsSkillsTechnicalSkills =
-      "Technical or computer skills";
-  static const String strengthsSkillsProblemSolving =
-      "Problem-solving & troubleshooting";
-  static const String strengthsSkillsOrganizationDetailOriented =
-      "Organization & detail-oriented";
-  // Job Priorities
-  static const String jobPrioritiesTitle = "Job Priorities";
-  static const String jobPrioritiesQuestion =
-      "What’s most important to you in a job?";
-  static const String jobPrioritiesHighSalaryPotential =
-      "High salary potential";
-  static const String jobPrioritiesJobSecurity = "Job security/stability";
-  static const String jobPrioritiesQuickEntry =
-      "Quick entry into the workforce";
-  static const String jobPrioritiesOpportunitiesToAdvance =
-      "Opportunities to advance";
-
-  // Location & Accessibility
-  static const String locationAccessibilityTitle = "Location & Accessibility";
-  static const String locationAccessibilityQuestion =
-      "Do you need training or work opportunities that are...";
-  static const String locationAccessibilityLocalInPerson = "Local / In-person";
-  static const String locationAccessibilityOnlineRemoteFriendly =
-      "Online / Remote-friendly";
-  static const String locationAccessibilityEitherIsFine = "Either is fine";
-  // Work History
-  static const String workHistoryTitle = "Work History";
-  static const String workHistorySubtitle =
-      "Add details about your previous jobs to make your resume stronger";
-  static const String workHistoryJobTitle = "Enter job title";
-  static const String workHistoryCompanyName = "Enter company";
-  static const String workHistoryLocation = "Company location";
-  static const String workHistoryStartDate = "Start Date";
-  static const String workHistoryEndDate = "End Date";
-  static const String workHistoryCurrentlyWorking = "Currently I work here!";
-  static const String workHistoryResponsibilities = "Key Responsibilities";
-  static const String workHistoryDescribeTasks =
-      "Describe your main task & achievements...";
-  static const String workHistoryAddAnotherJob = "Add another job";
-  static const String workHistorySaveAndContinue = "Save & Continue";
-
-  // Saved Jobs
-  static const String savedJobsTitle = "Saved Jobs";
-  static const String savedJobsCount = "Saved Jobs (2)";
-  static const String savedJobsEdit = "Edit";
-  static const String savedJobsDelete = "Delete";
-
-  // Upload Resume
-  static const String uploadResumeTitle = "Upload Resume";
-  static const String uploadResumePrompt = "Tap to upload file";
-  static const String uploadResumeFileTypes = "PNG, JPG or PDF";
-  static const String uploadResumeButton = "Upload";
-
-  // Analyzing Resume Page
-  static const String analyzingResumeTitle = "Analyzing your Resume...";
-  static const String analyzingResumeSubtitle = "This might take a few moments";
-  static const String resumeCompletionProgress = "50%";
-
-  // Resume Completeness Page
-  static const String resumeCompletenessTitle = "Resume Completeness";
-  static const String resumeCompletenessMessage = "Your CV is looking good!";
-  static const String selectionStatusTitle = "Selection Status";
-  static const String selectionStatusPersonalInfo = "Personal info";
-  static const String selectionStatusEducation = "Education";
-  static const String selectionStatusWorkExperience = "Work experience";
-  static const String selectionStatusSkills = "Skills";
-  static const String statusComplete = "Complete";
-  static const String statusIncomplete = "Incomplete";
-
-  // Suggestion Section
-  static const String suggestionTitle = "Suggestion";
-  static const String suggestionAddSkills =
-      "Add at least 3 skills to improve your Resume score.";
-  static const String suggestionWorkExperience =
-      "Include more details about your work experience.";
-  static const String suggestionAddCertifications =
-      "Add certifications to stand out from other candidates.";
-
-  // Recommended Path Section
-  static const String recommendedPathTitle = "Your Recommended Path";
-  static const String recommendedPathMessage =
-      "Based on your answers, here are career paths and training options that fit you best.";
-  static const String primaryMatchSoftwareDeveloper = "Software Developer";
-  static const String softwareDeveloperDescription =
-      "Build applications & websites using programming languages";
-  static const String softwareDeveloperDuration = "3-6 months";
-  static const String primaryMatchCustomerService = "Customer Service";
-  static const String customerServiceDescription =
-      "Help customers & build relationships in various industries";
-  static const String customerServiceDuration = "Less than months";
-
-  // Training and Job Actions
-  static const String startTrainingButton = "Start training";
-  static const String findJobsButton = "Find jobs";
-
-  // Footer Text
-  static const String footerText = "Real skills • Real jobs • Real fast";
-
-  // Dashboard / Home Screen
-  static const String homeProfileName = "Alex Bot";
-  static const String homeProfileTitle = "UI/UX Designer";
-  static const String liveJobsLabel = "Live Jobs";
-  static const String companiesLabel = "Companies";
-  static const String trainersLabel = "Trainers";
-  static const String certificatesEarnedLabel = "Certificates Earned";
-  static const String reminderLabel = "Remainder";
-  static const String reminderMessage = "App development training in 2 hours";
-  static const String reminderLink = "Google";
-
-  // Job Cards
-  static const String jobTitleTechnicalHead = "Technical Head";
-  static const String jobTitleBackendDeveloper = "Back-end Developer";
-  static const String jobCompanyTelegram = "Telegram";
-  static const String jobCompanyWhatsapp = "Whats app";
-  static const String jobLocationJakarta = "Jakarta, Indonesia-Onsite";
-  static const String jobLocationNorthIndia = "North India-Onsite";
-  static const String jobTypeFulltime = "Fulltime";
-  static const String jobTypeInternship = "Internship";
-  static const String jobLevelEntry = "Entry Level";
-  static const String jobDeadlineLabel = "Deadline";
-  static const String jobDeadlineDate = "18 Jan, 2025";
-  static const String jobDescriptionPlaceholder =
-      "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage...";
-
-  // Navigation Tabs
-  static const String bottomNavHome = "Home";
-  static const String bottomNavJobs = "Jobs";
-  static const String bottomNavTraining = "Training";
-  static const String bottomNavProfile = "Profile";
-
-  // Job Details Page
-  static const String detailsPageTitle = "Details";
-  static const String detailsCompanyTelegram = "Telegram";
-  static const String detailsJobTitle = "Technical Head";
-  static const String detailsLocation = "Jakarta, Indonesia-Onsite";
-  // static const String detailsJobDescription = "Telegram is a popular, free, cloud-based instant messaging app known for its focus on speed, security, and privacy, allowing users to exchange messages, photos, videos, and files across multiple devices. Key features include large group chats, channels for broadcasting to unlimited audiences.";
-
-  // Experience, Job Type, and Level Labels
-  static const String experienceLabel = "Experience";
-  static const String experienceValue = "2-3 Years";
-  static const String jobTypeLabel = "Job Type";
-  static const String jobTypeValue = "Full-time";
-  static const String jobLevelLabel = "Level";
-  static const String jobLevelValue = "Entry level";
-
-  // Requirements Section
-  static const String requirementsTitle = "Requirements";
-  static const String requirementEnglish = "Expert in Fluent English Spoken";
-  static const String requirementPortfolio = "Have a Good Portfolio";
-  static const String requirementAnimation = "Good at Using Animation";
-  static const String requirementCrossPlatform =
-      "Experience Designing across multiple platform";
-
-  // Salary and Deadline
-  static const String salaryValue = "\$420k/ Year";
-  static const String deadlineText = "Deadline - 18 Jan, 2025";
-
-  // Apply Button
-  static const String proceedToApplyButton = "Proceed to Apply";
-  // Success Message
-  static const String applicationSuccessMessage =
-      "You’ve successfully applied!";
-
-  // Application Details
-  static const String applicationDetailsTitle = "Application Details";
-  static const String jobRoleLabel = "Job Role";
-  static const String companyNameLabel = "Company name";
-  static const String dateAppliedLabel = "Date applied";
-  static const String applicationStatusLabel = "Status";
-  static const String statusUnderReview = "Under Review";
-
-  // Next Steps Section
-  static const String nextStepsTitle = "What happens next?";
-  static const String nextStepHrReview = "HR will review your profile";
-  static const String nextStepContactEmailPhone =
-      "You may be contacted via email/phone";
-  static const String nextStepTrackStatus = "Track status in 'My Applications'";
-
-  // Action Buttons
-  static const String viewMyApplicationsButton = "View My Applications";
-  static const String browseMoreJobsButton = "Browse More Jobs";
-
-  // My Applications Page
-  static const String myApplicationsTitle = "My Applications";
-  static const String allApplicationsFilter = "All Applications";
-  static const String pendingReviewFilter = "Pending Review";
-  static const String interviewScheduleFilter = "Interview Schedule";
-  static const String offerReceivedFilter = "Offer Received";
-  static const String rejectedFilter = "Rejected";
-
-  // Job Listings in My Applications
-  static const String telegramJobTitle = "Technical Head";
-  static const String telegramJobCompany = "Telegram ltd";
-  static const String telegramJobLocation = "Jakarta, Indonesia-Onsite";
-  static const String telegramJobStatusPendingReview = "Pending Review";
-  static const String whatsAppJobTitle = "Developer";
-  static const String whatsAppJobCompany = "Whats App";
-  static const String whatsAppJobStatusPendingReview = "Pending Review";
-
-  // Job Details Page in My Applications
-  static const String jobDetailsTitle = "Details";
-  static const String jobDetailsCompany = "Telegram ltd";
-  static const String jobDetailsDateApplied = "17 jan, 2025";
-  static const String jobDetailsStatus = "Under Review";
-
-  // Requirements Section
-  static const String requirementEnglishFluency =
-      "Expert in Fluent English Spoken";
-  static const String requirementAnimationSkills = "Good at Using Animation";
-  static const String requirementCrossPlatformSkills =
-      "Experience Designing across multiple platform";
-
-  // Application Details in Job Details
-  static const String applicationDetailsJobRole = "Job Role";
-  static const String applicationDetailsCompanyName = "Company name";
-  static const String applicationDetailsDateApplied = "Date applied";
-  static const String applicationDetailsStatus = "Status";
-
-  // Training and Resume Section
-  static const String trainingLabel = "Training";
-  static const String trainingCourse = "Career Skills-101";
-  static const String resumeLabel = "Resume";
-  static const String resumeFileName = "Alex samual_resume.pdf";
-
-  // Salary and Deadline
-  static const String salaryAmount = "\$420k/ Year";
-  static const String jobDeadline = "Deadline - 18 Jan, 2025";
-
-  // Application Status
-  static const String applicationStatusApplied = "Applied";
-  static const String availableTrainingTitle = "Available Training";
-  static const String trainingButton = "Training";
-  static const String profileButton = "Profile";
-  static const String availableLabel = "Available";
   static const String homeButton = "Home";
 
   static const String passSubtitle =
