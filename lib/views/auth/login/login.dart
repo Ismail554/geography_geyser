@@ -19,6 +19,30 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final String validEmail = 'ismail554@gmail.com';
+  final String validPassword = '586908';
+  bool _obscurePassword = true;
+
+  bool _validateLogin() {
+    return emailController.text.trim() == validEmail &&
+        passwordController.text.trim() == validPassword;
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Login Failed'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,11 +111,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       AppSpacing.h16,
 
                       // Password field
-                      BuildTextField(
-                        label: 'Password',
-                        hint: 'Enter your password',
-                        controller: passwordController,
-                        isPassword: true,
+                      StatefulBuilder(
+                        builder: (context, setState2) => BuildTextField(
+                          label: 'Password',
+                          hint: 'Enter your password',
+                          controller: passwordController,
+                          isPassword: false,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Color(0xFF42A5F5),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                          ),
+                          obscureText: _obscurePassword,
+                        ),
                       ),
                       AppSpacing.h4,
 
@@ -125,12 +165,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 48.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomePageScreen(),
-                              ),
-                            );
+                            if (_validateLogin()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePageScreen(),
+                                ),
+                              );
+                            } else if (emailController.text.isEmpty ||
+                                passwordController.text.isEmpty) {
+                              _showErrorDialog('Please fill in all fields');
+                            } else if (emailController.text.trim() !=
+                                validEmail) {
+                              _showErrorDialog('Invalid email address');
+                            } else {
+                              _showErrorDialog('Invalid password');
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF42A5F5),

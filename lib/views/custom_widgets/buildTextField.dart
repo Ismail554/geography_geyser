@@ -7,6 +7,8 @@ class BuildTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool isPassword;
+  final Widget? suffixIcon;
+  final bool obscureText;
 
   const BuildTextField({
     super.key,
@@ -15,6 +17,8 @@ class BuildTextField extends StatelessWidget {
     this.controller,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
+    this.suffixIcon,
+    this.obscureText = false,
   });
 
   @override
@@ -38,7 +42,7 @@ class BuildTextField extends StatelessWidget {
         TextField(
           controller: controller,
           keyboardType: keyboardType,
-          obscureText: isPassword,
+          obscureText: obscureText || isPassword,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(fontSize: 13.sp, color: Colors.grey[400]),
@@ -46,6 +50,7 @@ class BuildTextField extends StatelessWidget {
               horizontal: 16.w,
               vertical: 12.h,
             ),
+            suffixIcon: suffixIcon,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
