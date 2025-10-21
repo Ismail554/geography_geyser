@@ -4,13 +4,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
-
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/google_login_btn.dart';
-
 import 'package:geography_geyser/views/auth/login/login.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'dart:convert'; // JSON decode korar jonno
 
 class GeoSignUpScreen extends StatefulWidget {
   const GeoSignUpScreen({super.key});
@@ -26,6 +28,50 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  // Register function with API integration
+  Future<void> registerUser(
+    String fullName,
+    String email,
+    String password,
+  ) async {
+    final url = Uri.parse(
+      "https://dihydric-yael-therianthropic.ngrok-free.dev", // Your API URL
+    );
+    final body = jsonEncode({
+      'email': email,
+      'full_name': fullName,
+      'password': password,
+    });
+    final headers = {'Content-Type': 'application/json'};
+
+    try {
+      final response = await http.post(url, headers: headers, body: body);
+
+      if (response.statusCode == 201) {
+        // Status code 201 indicates created successfully
+        final responseData = jsonDecode(response.body);
+        print('Success: ${responseData['message']}');
+
+        // ID and Verification Token
+        String userId = responseData['user']['id'];
+        String verificationToken = responseData['verificationToken'];
+
+        // Store the ID and token using SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('user_id', userId);
+        await prefs.setString('verification_token', verificationToken);
+
+        debugPrint('User registered successfully, data stored.');
+      } else {
+        print('Error: ${response.statusCode}');
+        print('Message: ${response.body}');
+      }
+    } catch (e) {
+      debugPrint('Error: $e');
+    }
+  }
+
+  // Dispose controllers to avoid memory leaks
   @override
   void dispose() {
     _fullNameController.dispose();
@@ -33,6 +79,20 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  // Validation Function
+  bool validateFields() {
+    if (_fullNameController.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _passwordController.text.isEmpty ||
+        _confirmPasswordController.text.isEmpty) {
+      return false;
+    }
+    if (_passwordController.text != _confirmPasswordController.text) {
+      return false;
+    }
+    return true;
   }
 
   @override
@@ -69,21 +129,14 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                   child: Text(
                     'GEOGRAPHY \n     Geyser',
                     style: FontManager.titleText(),
-                    //  TextStyle(
-                    //   fontSize: 18.sp,
-                    //   fontWeight: FontWeight.bold,
-                    //   color: Colors.black,
-                    // ),
                   ),
                 ),
-
                 AppSpacing.h24,
               ],
             ),
 
             // White rounded container with form
             Container(
-              // margin: EdgeInsets.symmetric(horizontal: 16.w),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -130,6 +183,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                     // Password Field
                     BuildTextField(
                       label: 'Password',
+                      obscureText: true,
                       hint: 'Enter Password',
                       controller: _passwordController,
                       isPassword: true,
@@ -140,8 +194,10 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                     BuildTextField(
                       label: 'Confirm Password',
                       hint: 'Enter Password',
+                      obscureText: true,
                       controller: _confirmPasswordController,
                       isPassword: true,
+                      
                     ),
                     AppSpacing.h16,
 
@@ -151,8 +207,17 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                       height: 48.h,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Handle sign up
-                          debugPrint('Sign Up Pressed');
+                          if (validateFields()) {
+                            // Call the register API
+                            registerUser(
+                              _fullNameController.text,
+                              _emailController.text,
+                              _passwordController.text,
+                            );
+                          } else {
+                            // Show validation error
+                            debugPrint('Please fill in all fields correctly');
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF42A5F5),
@@ -171,7 +236,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    AppSpacing.h20,
 
                     // OR divider
                     Row(
@@ -194,7 +259,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.h),
+                    AppSpacing.h20,
 
                     // Google Login Button
                     GoogleLoginBtn(),
@@ -242,53 +307,3 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
     );
   }
 }
-
-//   Widget BuildTextField({
-//     required String label,
-//     required String hint,
-//     required TextEditingController controller,
-//     TextInputType keyboardType = TextInputType.text,
-//     bool isPassword = false,
-//   }) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Text(
-//           label,
-//           style: TextStyle(
-//             fontFamily: 'SegoeUI',
-//             fontSize: 16.sp,
-//             fontWeight: FontWeight.w500,
-//             color: Colors.black,
-//           ),
-//         ),
-//         SizedBox(height: 8.h),
-//         TextField(
-//           controller: controller,
-//           keyboardType: keyboardType,
-//           obscureText: isPassword,
-//           decoration: InputDecoration(
-//             hintText: hint,
-//             hintStyle: TextStyle(fontSize: 13.sp, color: Colors.grey[400]),
-//             contentPadding: EdgeInsets.symmetric(
-//               horizontal: 16.w,
-//               vertical: 12.h,
-//             ),
-//             border: OutlineInputBorder(
-//               borderRadius: BorderRadius.circular(12.r),
-//               borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
-//             ),
-//             enabledBorder: OutlineInputBorder(
-//               borderRadius: BorderRadius.circular(12.r),
-//               borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
-//             ),
-//             focusedBorder: OutlineInputBorder(
-//               borderRadius: BorderRadius.circular(12.r),
-//               borderSide: const BorderSide(color: Color(0xFF42A5F5), width: 2),
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }

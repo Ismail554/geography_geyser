@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geography_geyser/core/app_spacing.dart';
 
 class BuildTextField extends StatelessWidget {
   final String label;
@@ -36,7 +37,7 @@ class BuildTextField extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        SizedBox(height: 8.h),
+        AppSpacing.h8,
 
         // Input field
         TextField(
@@ -45,7 +46,7 @@ class BuildTextField extends StatelessWidget {
           obscureText: obscureText || isPassword,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(fontSize: 13.sp, color: Colors.grey[400]),
+            hintStyle: TextStyle(fontSize: 14.sp, color: Colors.grey[400]),
             contentPadding: EdgeInsets.symmetric(
               horizontal: 16.w,
               vertical: 12.h,
