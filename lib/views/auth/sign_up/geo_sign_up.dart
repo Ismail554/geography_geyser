@@ -127,7 +127,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'GEOGRAPHY \n     Geyser',
+                    'GEOGRAPHY \n     Geyser'.toUpperCase(),
                     style: FontManager.titleText(),
                   ),
                 ),

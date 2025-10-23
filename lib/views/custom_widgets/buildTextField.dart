@@ -10,6 +10,8 @@ class BuildTextField extends StatelessWidget {
   final bool isPassword;
   final Widget? suffixIcon;
   final bool obscureText;
+  final String? errorText;
+  final Function(String)? onChanged;
 
   const BuildTextField({
     super.key,
@@ -20,6 +22,8 @@ class BuildTextField extends StatelessWidget {
     this.isPassword = false,
     this.suffixIcon,
     this.obscureText = false,
+    this.errorText,
+    this.onChanged,
   });
 
   @override
@@ -44,6 +48,7 @@ class BuildTextField extends StatelessWidget {
           controller: controller,
           keyboardType: keyboardType,
           obscureText: obscureText || isPassword,
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(fontSize: 14.sp, color: Colors.grey[400]),
@@ -52,17 +57,40 @@ class BuildTextField extends StatelessWidget {
               vertical: 12.h,
             ),
             suffixIcon: suffixIcon,
+            errorText: errorText,
+            errorStyle: TextStyle(
+              fontSize: 12.sp,
+              color: Colors.red,
+              fontWeight: FontWeight.w500,
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
+              borderSide: BorderSide(
+                color: errorText != null ? Colors.red : Colors.grey[300]!,
+                width: 1.5,
+              ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
+              borderSide: BorderSide(
+                color: errorText != null ? Colors.red : Colors.grey[300]!,
+                width: 1.5,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: const BorderSide(color: Color(0xFF42A5F5), width: 2),
+              borderSide: BorderSide(
+                color: errorText != null ? Colors.red : const Color(0xFF42A5F5),
+                width: 2,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: const BorderSide(color: Colors.red, width: 1.5),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: const BorderSide(color: Colors.red, width: 2),
             ),
           ),
         ),

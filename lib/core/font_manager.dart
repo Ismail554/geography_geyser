@@ -21,14 +21,24 @@ class FontManager {
 
   // ================== Text Styles ==================
 
-  static TextStyle bigTitle() => GoogleFonts.montserrat(
+  static TextStyle bigTitle() => GoogleFonts.notoSans(
     fontSize: 24,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w800,
     color: Colors.black,
   );
   // Title Text
   static TextStyle titleText() => TextStyle(
     fontFamily: inter,
+    fontSize: 22.sp,
+    fontWeight: w700,
+    color: mainTextColor,
+    height: 1.0,
+    letterSpacing: 0.0,
+  );
+
+    //Bold Title Text
+  static TextStyle boldTitleText() => TextStyle(
+    fontFamily: "SegoeUI",
     fontSize: 22.sp,
     fontWeight: w700,
     color: mainTextColor,
@@ -141,17 +151,6 @@ class FontManager {
   );
 
   // ======= Details page ====//
-  // Header Subtitle
-  static TextStyle boldTitleText({
-    double fontSize = 22,
-    Color color = Colors.black,
-  }) => GoogleFonts.montserrat(
-    fontSize: fontSize.sp,
-    fontWeight: w700,
-    color: color,
-    height: 1.0,
-    letterSpacing: 0.0,
-  );
 
   // Header Subtitle
   static TextStyle headlineText({
