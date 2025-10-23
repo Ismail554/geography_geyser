@@ -33,219 +33,240 @@ class _LoginScreenState extends State<LoginScreen> {
       resizeToAvoidBottomInset: true,
       body: Column(
         children: [
-          AppSpacing.h40,
-
-          // Logo & Title
-          Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 18.h),
-                width: 100.w,
-                height: 100.h,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: const Color(0xFF4CAF50), width: 4),
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/logo.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Text(
-                'GEOGRAPHY\nGEYSER',
-                style: FontManager.titleText(),
-                textAlign: TextAlign.center,
-              ),
-              AppSpacing.h24,
-            ],
-          ),
-
-          // Login Form Section - Expanded to fill remaining space
           Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(130.r),
-                ),
-              ),
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 30.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black,
-                      ),
-                    ),
-                    AppSpacing.h20,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  AppSpacing.h60,
 
-                    // Email Field
-                    BuildTextField(
-                      label: 'Email',
-                      hint: 'Enter your email',
-                      controller: emailController,
-                      errorText: _emailError,
-                      onChanged: (value) {
-                        setState(() {
-                          if (value.isEmpty) {
-                            _emailError = 'Email is required';
-                          } else if (!value.contains('@')) {
-                            _emailError = 'Please enter a valid email';
-                          } else {
-                            _emailError = null;
-                          }
-                        });
-                      },
-                    ),
-                    AppSpacing.h16,
-
-                    // Password Field
-                    BuildTextField(
-                      label: 'Password',
-                      hint: 'Enter your password',
-                      controller: passwordController,
-                      isPassword: true,
-                      obscureText: _obscurePassword,
-                      errorText: _passwordError,
-                      onChanged: (value) {
-                        setState(() {
-                          if (value.isEmpty) {
-                            _passwordError = 'Password is required';
-                          } else if (value.length < 6) {
-                            _passwordError =
-                                'Password must be at least 6 characters';
-                          } else {
-                            _passwordError = null;
-                          }
-                        });
-                      },
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: const Color(0xFF42A5F5),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePassword = !_obscurePassword;
-                          });
-                        },
-                      ),
-                    ),
-                    AppSpacing.h4,
-
-                    // Forgot Password
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgotPassScreen(),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          "Forgot Password?",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: const Color(0xFF42A5F5),
-                            fontWeight: FontWeight.bold,
+                  // Logo & Title
+                  Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 18.h),
+                        width: 100.w,
+                        height: 100.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFF4CAF50),
+                            width: 4,
+                          ),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/logo.png'),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                    ),
-                    AppSpacing.h20,
+                      Text(
+                        'GEOGRAPHY\nGEYSER',
+                        style: FontManager.titleText(),
+                        textAlign: TextAlign.center,
+                      ),
+                      AppSpacing.h24,
+                    ],
+                  ),
 
-                    // Login Button
-                    CustomLoginButton(
-                      text: 'Login',
-                      onPressed: () {
-                        // Check if all fields are valid
-                        if (_emailError == null &&
-                            _passwordError == null &&
-                            emailController.text.isNotEmpty &&
-                            passwordController.text.isNotEmpty) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePageScreen(),
-                            ),
-                          );
-                        }
-                      },
+                  // Login Form Section
+                  Container(
+                    width: double.infinity,
+                    constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height * 0.80,
                     ),
-                    AppSpacing.h20,
-
-                    // OR Divider
-                    Row(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(130.r),
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 24.w,
+                      vertical: 30.h,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Divider(color: Colors.grey[300], thickness: 1),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12.w),
-                          child: Text(
-                            'OR Login With',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Divider(color: Colors.grey[300], thickness: 1),
-                        ),
-                      ],
-                    ),
-                    AppSpacing.h20,
-
-                    // Google login
-                    const GoogleLoginBtn(),
-                    AppSpacing.h16,
-
-                    // Create Account
-                    Center(
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'Don\'t have an account? ',
+                        Text(
+                          'Login',
                           style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.grey[600],
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.black,
                           ),
-                          children: [
-                            TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GeoSignUpScreen(),
-                                    ),
-                                  );
-                                },
-                              text: 'Create Account',
+                        ),
+                        AppSpacing.h20,
+
+                        // Email Field
+                        BuildTextField(
+                          label: 'Email',
+                          hint: 'Enter your email',
+                          controller: emailController,
+                          errorText: _emailError,
+                          onChanged: (value) {
+                            setState(() {
+                              if (value.isEmpty) {
+                                _emailError = 'Email is required';
+                              } else if (!value.contains('@')) {
+                                _emailError = 'Please enter a valid email';
+                              } else {
+                                _emailError = null;
+                              }
+                            });
+                          },
+                        ),
+                        AppSpacing.h16,
+
+                        // Password Field
+                        BuildTextField(
+                          label: 'Password',
+                          hint: 'Enter your password',
+                          controller: passwordController,
+                          isPassword: true,
+                          obscureText: _obscurePassword,
+                          errorText: _passwordError,
+                          onChanged: (value) {
+                            setState(() {
+                              if (value.isEmpty) {
+                                _passwordError = 'Password is required';
+                              } else if (value.length < 6) {
+                                _passwordError =
+                                    'Password must be at least 6 characters';
+                              } else {
+                                _passwordError = null;
+                              }
+                            });
+                          },
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: const Color(0xFF42A5F5),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                          ),
+                        ),
+                        AppSpacing.h4,
+
+                        // Forgot Password
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPassScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Forgot Password?",
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 color: const Color(0xFF42A5F5),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                          ),
+                        ),
+                        AppSpacing.h20,
+
+                        // Login Button
+                        CustomLoginButton(
+                          text: 'Login',
+                          onPressed: () {
+                            // Check if all fields are valid
+                            if (_emailError == null &&
+                                _passwordError == null &&
+                                emailController.text.isNotEmpty &&
+                                passwordController.text.isNotEmpty) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePageScreen(),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                        AppSpacing.h20,
+
+                        // OR Divider
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Colors.grey[300],
+                                thickness: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w),
+                              child: Text(
+                                'OR Login With',
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Colors.grey[300],
+                                thickness: 1,
+                              ),
+                            ),
                           ],
                         ),
-                      ),
+                        AppSpacing.h20,
+
+                        // Google login
+                        const GoogleLoginBtn(),
+                        AppSpacing.h16,
+
+                        // Create Account
+                        Center(
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Don\'t have an account? ',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                color: Colors.grey[600],
+                              ),
+                              children: [
+                                TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const GeoSignUpScreen(),
+                                        ),
+                                      );
+                                    },
+                                  text: 'Create Account',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    color: const Color(0xFF42A5F5),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        AppSpacing.h24,
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
