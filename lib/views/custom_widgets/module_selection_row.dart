@@ -27,7 +27,7 @@ class ModuleSelectionRow extends StatelessWidget {
       children: [
         // Left Option
         Expanded(
-          child: _buildModuleOption(
+          child: buildModuleOption(
             text: leftOption,
             isSelected: isLeftSelected,
             onTap: () => onSelectionChanged(true),
@@ -42,7 +42,7 @@ class ModuleSelectionRow extends StatelessWidget {
 
         // Right Option
         Expanded(
-          child: _buildModuleOption(
+          child: buildModuleOption(
             text: rightOption,
             isSelected: isRightSelected,
             onTap: () => onSelectionChanged(false),
@@ -52,12 +52,12 @@ class ModuleSelectionRow extends StatelessWidget {
     );
   }
 
-  Widget _buildModuleOption({
+  Widget buildModuleOption({
     required String text,
     required bool isSelected,
     required VoidCallback onTap,
   }) {
-    bool shouldAnimate = text.length > 9; // 👈 condition
+    bool shouldAnimate = text.length > 11; // 👈 condition
 
     return GestureDetector(
       onTap: onTap,

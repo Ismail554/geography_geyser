@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
+import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 
 class ModuleOption extends StatelessWidget {
@@ -48,7 +49,7 @@ class ModuleOption extends StatelessWidget {
                   ? Icon(Icons.check, color: Colors.white, size: 12.sp)
                   : null,
             ),
-            SizedBox(width: 12.w),
+            AppSpacing.w12,
             Text(
               text,
               style: FontManager.bodyText(

@@ -40,7 +40,7 @@ class _OptionalModuleSettingsState extends State<OptionalModuleSettings> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: EdgeInsets.all(20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,70 +55,63 @@ class _OptionalModuleSettingsState extends State<OptionalModuleSettings> {
               AppSpacing.h32,
 
               // Module Selection Rows
-              Expanded(
-                child: Column(
-                  children: [
-                    // Row 1: COASTS OR COASTS
-                    ModuleSelectionRow(
-                      leftOption: AppStrings.moduleCoasts,
-                      rightOption: AppStrings.moduleCoasts,
-                      isLeftSelected: row1LeftSelected,
-                      isRightSelected: !row1LeftSelected,
-                      onSelectionChanged: (isLeft) {
-                        setState(() {
-                          row1LeftSelected = isLeft;
-                        });
-                      },
-                    ),
+              Column(
+                children: [
+                  ModuleSelectionRow(
+                    leftOption: AppStrings.moduleCoasts,
+                    rightOption: AppStrings.moduleCoasts,
+                    isLeftSelected: row1LeftSelected,
+                    isRightSelected: !row1LeftSelected,
+                    onSelectionChanged: (isLeft) {
+                      setState(() {
+                        row1LeftSelected = isLeft;
+                      });
+                    },
+                  ),
+                  AppSpacing.h16,
 
-                    AppSpacing.h16,
+                  ModuleSelectionRow(
+                    leftOption: AppStrings.moduleGlaciers,
+                    rightOption: AppStrings.moduleHHRI,
+                    isLeftSelected: !row2RightSelected,
+                    isRightSelected: row2RightSelected,
+                    onSelectionChanged: (isLeft) {
+                      setState(() {
+                        row2RightSelected = !isLeft;
+                      });
+                    },
+                  ),
+                  AppSpacing.h16,
 
-                    // Row 2: GLACIERS OR HHRI
-                    ModuleSelectionRow(
-                      leftOption: AppStrings.moduleGlaciers,
-                      rightOption: AppStrings.moduleHHRI,
-                      isLeftSelected: !row2RightSelected,
-                      isRightSelected: row2RightSelected,
-                      onSelectionChanged: (isLeft) {
-                        setState(() {
-                          row2RightSelected = !isLeft;
-                        });
-                      },
-                    ),
-
-                    AppSpacing.h16,
-
-                    // Row 3: MIGRATION OR COASTS
-                    ModuleSelectionRow(
-                      leftOption: AppStrings.moduleMigrations,
-                      rightOption: AppStrings.moduleCoasts,
-                      isLeftSelected: row3LeftSelected,
-                      isRightSelected: row3RightSelected,
-                      onSelectionChanged: (isLeft) {
-                        setState(() {
-                          row3LeftSelected = isLeft;
-                          row3RightSelected = !isLeft;
-                        });
-                      },
-                    ),
-                  ],
-                ),
+                  ModuleSelectionRow(
+                    leftOption: AppStrings.moduleMigrations,
+                    rightOption: AppStrings.moduleCoasts,
+                    isLeftSelected: row3LeftSelected,
+                    isRightSelected: row3RightSelected,
+                    onSelectionChanged: (isLeft) {
+                      setState(() {
+                        row3LeftSelected = isLeft;
+                        row3RightSelected = !isLeft;
+                      });
+                    },
+                  ),
+                ],
               ),
               Divider(),
-
               AppSpacing.h40,
 
-              // Back To Login Button
-              CustomLoginButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePageScreen()),
-                  );
-                },
-                text: AppStrings.goHome,
+              Padding(
+                padding: EdgeInsets.all(4.0),
+                child: CustomLoginButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePageScreen()),
+                    );
+                  },
+                  text: AppStrings.goHome,
+                ),
               ),
-
               AppSpacing.h20,
             ],
           ),

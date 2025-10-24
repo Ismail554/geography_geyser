@@ -126,8 +126,8 @@ class ProfileScreen extends StatelessWidget {
           buildSettingRow(
             icon: Icons.logout_outlined,
             text: AppStrings.logOutOption,
-            textColor: AppColors.buttonColor, // ✅ Themed logout color
-            iconColor: AppColors.buttonColor,
+            textColor: AppColors.red, // ✅ Themed logout color
+            iconColor: AppColors.red,
             onTap: () => showLogoutDialog(context),
           ),
         ],
