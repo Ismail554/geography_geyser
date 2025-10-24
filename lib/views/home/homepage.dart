@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
+import 'package:geography_geyser/core/app_strings.dart';
+import 'package:geography_geyser/views/profile/profile_screen.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -16,7 +18,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   final List<Widget> _pages = [
     const HomeContent(),
     const Center(child: Text("📘 Module Page")),
-    const Center(child: Text("👤 Profile Page")),
+    const ProfileScreen(hideSettingsCard: false),
   ];
 
   void _onTap(int index) {
@@ -129,10 +131,10 @@ class HomeContent extends StatelessWidget {
                             border: Border.all(color: Colors.blue, width: 1),
                           ),
                           child: Text(
-                            "Strongest Module: Water Cycle",
+                            AppStrings.strongestModuleLabel,
                             style: TextStyle(
                               fontSize: 14.sp,
-                              color: Colors.blue[800],
+                              color: AppColors.blue,
                             ),
                           ),
                         ),
@@ -191,11 +193,28 @@ class HomeContent extends StatelessWidget {
             ActionButton(
               icon: Icons.bar_chart_outlined,
               label: 'Student Stats',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(hideSettingsCard: true),
+                  ),
+                );
+              },
             ),
-            ActionButton(icon: Icons.quiz_outlined, label: 'Take a Quiz'),
+            ActionButton(
+              icon: Icons.quiz_outlined,
+              label: 'Take a Quiz',
+              onTap: () {
+                // Handle Take a Quiz navigation
+              },
+            ),
             ActionButton(
               icon: Icons.settings_outlined,
               label: 'Module Settings',
+              onTap: () {
+                // Handle Module Settings navigation
+              },
             ),
           ],
         ),
@@ -221,8 +240,13 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100.h,
-      padding: EdgeInsets.all(12.r),
+      padding: EdgeInsets.all(8.r),
       decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.blue.withOpacity(0.3),
+          width: 1.5,
+          style: BorderStyle.solid,
+        ),
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
@@ -241,7 +265,7 @@ class InfoCard extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 16.sp, color: Colors.black),
           ),
 
           AppSpacing.h4,
@@ -252,6 +276,8 @@ class InfoCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w700,
+              height: 1,
+              overflow: TextOverflow.ellipsis,
               color: Colors.black,
             ),
           ),
@@ -335,39 +361,48 @@ class LastActivityCard extends StatelessWidget {
 class ActionButton extends StatelessWidget {
   final IconData icon;
   final String label;
+  final VoidCallback? onTap;
 
-  const ActionButton({super.key, required this.icon, required this.label});
+  const ActionButton({
+    super.key,
+    required this.icon,
+    required this.label,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 6.h),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(color: Colors.grey.shade300, width: 1.2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.black87),
-          AppSpacing.w12,
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 6.h),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color: Colors.grey.shade300, width: 1.2),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.black87),
+            AppSpacing.w12,
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

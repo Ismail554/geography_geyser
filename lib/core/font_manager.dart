@@ -124,11 +124,12 @@ class FontManager {
   );
 
   // AppBar Text
-  static TextStyle appBarText() => TextStyle(
+  static TextStyle appBarText({Color color = mainTextColor}) => TextStyle(
     fontFamily: inter,
     fontSize: 16.sp,
     fontWeight: w700,
-    color: mainTextColor,
+
+    color: color,
     height: 1.0,
     letterSpacing: 0.0,
   );
