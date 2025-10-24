@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 
 class CustomLoginButton extends StatelessWidget {
   final String text;
@@ -35,7 +36,8 @@ class CustomLoginButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? const Color(0xFF42A5F5),
+          backgroundColor: backgroundColor ?? AppColors.buttonColor,
+
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
           ),
@@ -45,7 +47,7 @@ class CustomLoginButton extends StatelessWidget {
             ? SizedBox(
                 width: 20.w,
                 height: 20.h,
-                child: const CircularProgressIndicator(
+                child: CircularProgressIndicator(
                   color: Colors.white,
                   strokeWidth: 2,
                 ),

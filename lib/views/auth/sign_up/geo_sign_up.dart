@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
+import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/google_login_btn.dart';
+import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
+import 'package:geography_geyser/views/auth/sign_up/verify_otp.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -197,44 +200,32 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                       obscureText: true,
                       controller: _confirmPasswordController,
                       isPassword: true,
-                      
                     ),
                     AppSpacing.h16,
 
                     // Sign Up Button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48.h,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (validateFields()) {
-                            // Call the register API
-                            registerUser(
-                              _fullNameController.text,
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                          } else {
-                            // Show validation error
-                            debugPrint('Please fill in all fields correctly');
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF42A5F5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.r),
+                    CustomLoginButton(
+                      onPressed: () {
+                        // if (validateFields()) {
+
+                        //   registerUser(
+                        //     _fullNameController.text,
+                        //     _emailController.text,
+                        //     _passwordController.text,
+                        //   );
+                        // Navigate to VerifyOtpScreen after successful registration
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VerifyOtpScreen(),
                           ),
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                        );
+                        // } else {
+                        //   // Show validation error
+                        //   debugPrint('Please fill in all fields correctly');
+                        // }
+                      },
+                      text: AppStrings.signUpButton,
                     ),
                     AppSpacing.h20,
 
@@ -279,7 +270,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                               text: 'Login',
                               style: TextStyle(
                                 fontSize: 16.sp,
-                                color: const Color(0xFF42A5F5),
+                                color: Color(0xFF42A5F5),
                                 fontWeight: FontWeight.bold,
                               ),
                               recognizer: TapGestureRecognizer()

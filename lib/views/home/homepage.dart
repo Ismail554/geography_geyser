@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentIndex],
+      backgroundColor: AppColors.bgColor,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTap,
@@ -177,13 +179,9 @@ class HomeContent extends StatelessWidget {
                 ),
 
                 AppSpacing.w12,
-                Expanded(
-                  child: InfoCard(
-                    icon: Icons.access_time,
-                    title: 'Last Activity',
-                    value: '2 hrs ago\nTopic: Globalization',
-                  ),
-                ),
+
+                /// Special card for Last Activity with proper text layout
+                Expanded(child: LastActivityCard()),
               ],
             ),
 
@@ -258,6 +256,76 @@ class InfoCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// ✅ Special card for Last Activity with proper text layout
+class LastActivityCard extends StatelessWidget {
+  const LastActivityCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 100.h,
+        width: double.infinity,
+        padding: EdgeInsets.all(8.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(
+            color: Colors.blue.withOpacity(0.3),
+            width: 1.5,
+            style: BorderStyle.solid,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.access_time, color: Colors.blue, size: 20),
+            AppSpacing.h2,
+            Text(
+              'Last Activity',
+              style: TextStyle(
+                fontSize: 12.sp,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            AppSpacing.h8,
+            Text(
+              'Last quiz: 2 hours ago',
+              style: TextStyle(
+                fontSize: 11.sp,
+                color: Colors.grey[700],
+                fontWeight: FontWeight.w400,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 2.h),
+            Text(
+              'Topic: Globalization',
+              style: TextStyle(
+                fontSize: 11.sp,
+                color: Colors.grey[700],
+                fontWeight: FontWeight.w400,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

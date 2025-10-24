@@ -36,7 +36,7 @@ class FontManager {
     letterSpacing: 0.0,
   );
 
-    //Bold Title Text
+  //Bold Title Text
   static TextStyle boldTitleText() => TextStyle(
     fontFamily: "SegoeUI",
     fontSize: 22.sp,
@@ -104,11 +104,11 @@ class FontManager {
   );
 
   // Body / Caption Text (default)
-  static TextStyle bodyText() => TextStyle(
+  static TextStyle bodyText({Color color = mainTextColor}) => TextStyle(
     fontFamily: inter,
     fontSize: 14.sp,
     fontWeight: w400,
-    color: mainTextColor,
+    color: color,
     height: 1.0,
     letterSpacing: 0.0,
   );
@@ -165,9 +165,10 @@ class FontManager {
   );
   // Header Subtitle
   static TextStyle boldHeading({
-    double fontSize = 36,
+    double fontSize = 24,
     Color color = Colors.green,
-  }) => GoogleFonts.robotoFlex(
+  }) => TextStyle(
+    fontFamily: 'SegoeUI',
     fontSize: fontSize.sp,
     fontWeight: w600,
     color: color,

@@ -8,16 +8,17 @@ import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/congratulations.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/new_pass.dart';
+import 'package:geography_geyser/views/auth/sign_up/reg_congratulations.dart';
 import 'package:pinput/pinput.dart';
 
-class VerifyScreen extends StatefulWidget {
-  const VerifyScreen({super.key});
+class VerifyOtpScreen extends StatefulWidget {
+  const VerifyOtpScreen({super.key});
 
   @override
-  State<VerifyScreen> createState() => _VerifyScreenState();
+  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
 }
 
-class _VerifyScreenState extends State<VerifyScreen> {
+class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final TextEditingController _pinController = TextEditingController();
   final FocusNode _pinFocusNode = FocusNode();
   int _resendTimer = 60;
@@ -30,7 +31,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic( Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (_resendTimer > 0) {
         setState(() {
           _resendTimer--;
@@ -213,7 +214,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => NewPass_screen(),
+                                  builder: (context) =>
+                                      RegCongratulations_Screen(),
                                 ),
                               );
                             }

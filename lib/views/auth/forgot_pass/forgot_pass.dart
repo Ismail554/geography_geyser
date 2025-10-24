@@ -14,38 +14,6 @@ class ForgotPassScreen extends StatefulWidget {
 class _ForgotPassScreenState extends State<ForgotPassScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppStrings.resetPasswordTitle,
-          style: FontManager.titleText(),
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                AppSpacing.h56,
-                Text('Forgot your Password ?', style: FontManager.titleText()),
-                AppSpacing.h16,
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Text(
-                    AppStrings.forgotPasswordInstruction,
-                    style: FontManager.subtitleText(color: AppColors.black),
-                    textAlign: TextAlign.center,
-                    maxLines: 3,
-                  )
-      ),
-             ],
- 
-            ),
-          ),
-        ),
-      ),
-    );
-
+    return Scaffold();
   }
 }

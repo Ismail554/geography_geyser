@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   /* ==================== Core Colors ==================== */
-  static const Color bgColor = Color(0xFFA8D8FF);
-  static const Color primaryColor = Color(0xFF6A0DAD); // Primary color (Purple)
+  static const Color bgColor = Color(0xFFF0FBFF);
+  static const Color primaryColor =
+      Colors.lightBlueAccent; // Primary color (Purple)
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color darkGrey = Color(0xFF1F2937);
@@ -27,4 +28,6 @@ class AppColors {
   static const Color borderColor = Color(0xffD4D4D4);
 
   static const Color statFillColor = Color(0xf1E90FF26);
+  // static const Color buttonColor = Colors.lightBlueAccent;
+  static const Color buttonColor = Color(0xFF52B1FF);
 }

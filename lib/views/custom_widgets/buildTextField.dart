@@ -8,6 +8,7 @@ class BuildTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool isPassword;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
   final String? errorText;
@@ -18,6 +19,7 @@ class BuildTextField extends StatelessWidget {
     required this.label,
     required this.hint,
     this.controller,
+    this.prefixIcon,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
     this.suffixIcon,
@@ -37,7 +39,7 @@ class BuildTextField extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'SegoeUI',
             fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w800,
             color: Colors.black,
           ),
         ),
@@ -57,6 +59,7 @@ class BuildTextField extends StatelessWidget {
               vertical: 12.h,
             ),
             suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
             errorText: errorText,
             errorStyle: TextStyle(
               fontSize: 12.sp,
@@ -73,7 +76,7 @@ class BuildTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(
-                color: errorText != null ? Colors.red : Colors.grey[300]!,
+                color: errorText != null ? Colors.red : Colors.black,
                 width: 1.5,
               ),
             ),

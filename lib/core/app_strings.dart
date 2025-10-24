@@ -10,12 +10,9 @@ class AppStrings {
 
   // Sign Up
   static const String signUpTitle = "Sign Up";
-  static const String subSignUpTitle = "Career starts here";
-  static const String chooseSignUpType =
-      "Choose your user type to start your training and career path";
-  static const String agencyReferred = "Agency Referred";
-  static const String normalUser = "Normal User";
-
+  static const String newPassSubtitle =
+      "Your account has been created successfully.";
+  static const String goHome = "Go to Home";
   // Normal Sign Up
   static const String logInTitle = "Login";
   static const String passwordLabel = "Password";
@@ -32,7 +29,7 @@ class AppStrings {
   static const String screenTitleResetPassword = "Reset password";
   static const String forgotYourPasswordTitle = "Forgot your Password ?";
   static const String forgotPasswordInstruction =
-      "Enter the email address associated with your account and we will send you OTP to reset you passwprd"; // Note: "passwprd" is a typo in the original image
+      "Please enter the email used to create your account"; // Note: "passwprd" is a typo in the original image
   static const String emailLabel = "Email";
   static const String emailPlaceholder = "Enter Email";
   static const String backToLogin = "Back to Login";
@@ -173,7 +170,7 @@ class AppStrings {
   static const String selectOptionalModuleInstruction =
       "Select Your Optional Module";
   static const String moduleCoasts = "COASTS";
-  static const String moduleGlaciers = "GLACIERS";
+  static const String moduleGlaciers = "GLACIERS are great";
   static const String moduleRegeneratingPlace = "REGENERATING PLACE";
   static const String moduleMigration = "MIGRATION";
   static const String moduleHHRI = "HHRI";
@@ -234,12 +231,13 @@ class AppStrings {
   static const String verificationCodePrompt = "Enter verification code";
   static const String verificationCodeSent = "We sent a 6-digit code to ";
 
+  static const String congratulations = "Congratulations!";
   static const String passChanged = "Password Changed!";
   static const String verifyAccountButton = "Verify Account";
   static const String resendCode =
       "Resend code in %s"; // Placeholder for seconds countdown
-  static const String didntReceiveCode =
-      "Didn't receive the code? Check your spam folder.";
+  static const String resendOTPCode = "Resend OTP";
+  static const String didntReceiveCode = "OTP not Received?";
 
   // Forgot Password
   static const String forgotPasswordTitle = "Forgot password";
@@ -250,8 +248,11 @@ class AppStrings {
   // Reset Password
   static const String resetPasswordTitle = "Reset password";
   static const String createNewPassword = "Create new password";
-  static const String newPassword = "New password";
+  static const String newPassword = "New Password";
+  static const String passHint = "Enter a new password ";
+  static const String createPassword = "Create Password";
   static const String confirmNewPassword = "Confirm new password";
+  static const String confirmNewHint = "Re-enter new password";
   static const String resetPasswordButton = "Reset password";
   static const String newPasswordInstruction =
       "Your new password must be different from previously used passwords.";

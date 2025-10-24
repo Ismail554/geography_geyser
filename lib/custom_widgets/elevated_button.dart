@@ -51,7 +51,7 @@ class ElevatedButtonCustom extends StatelessWidget {
                 SizedBox(width: 8.w),
               ],
               Text(
-                text ?? AppStrings.agencyReferred,
+                text ?? AppStrings.logInButton,
                 style: FontManager.whiteButtonText(),
               ),
             ],

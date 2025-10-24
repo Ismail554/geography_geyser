@@ -5,6 +5,7 @@ import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/forgot_pass.dart';
+import 'package:geography_geyser/views/auth/forgot_pass/pass_reset.dart';
 import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
@@ -160,8 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ForgotPassScreen(),
+                                  builder: (context) => PassResetScreen(),
                                 ),
                               );
                             },
@@ -189,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const HomePageScreen(),
+                                  builder: (context) => HomePageScreen(),
                                 ),
                               );
                             }
@@ -227,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         AppSpacing.h20,
 
                         // Google login
-                        const GoogleLoginBtn(),
+                       GoogleLoginBtn(),
                         AppSpacing.h16,
 
                         // Create Account
@@ -254,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   text: 'Create Account',
                                   style: TextStyle(
                                     fontSize: 16.sp,
-                                    color: const Color(0xFF42A5F5),
+                                    color: AppColors.primaryColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
