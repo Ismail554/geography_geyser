@@ -5,6 +5,7 @@ import 'package:geography_geyser/views/auth/forgot_pass/congratulations.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/verify_screen.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
 import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
+import 'package:geography_geyser/views/modules/quiz_complete.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(),
         home: child,
       ),
-      child: SplashScreen(),
+      child: QuizCompleteScreen(),
     );
   }
 }

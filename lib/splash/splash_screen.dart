@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/font_manager.dart';
+import 'package:geography_geyser/views/auth/login/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,14 +15,25 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    super.initState();
+
+    // ✅ Add a delay, then navigate to LoginScreen
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.splashBG,
       body: SafeArea(
         child: SingleChildScrollView(
-          // ✅ Makes content scrollable if screen is short (landscape/small device)
           child: ConstrainedBox(
-            // ✅ Ensures content takes at least full screen height
             constraints: BoxConstraints(
               minHeight:
                   MediaQuery.of(context).size.height -
@@ -32,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   FadeInDown(
-                    duration: const Duration(seconds: 2),
+                    duration: Duration(seconds: 2),
                     child: Image.asset(
                       'assets/images/logo.png',
                       width: 300,
@@ -40,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ),
                   FadeInUp(
-                    duration: const Duration(seconds: 2),
+                    duration: Duration(seconds: 2),
                     child: Text(
                       'Geography\nGeyser',
                       textAlign: TextAlign.center,

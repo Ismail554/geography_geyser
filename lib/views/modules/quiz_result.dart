@@ -99,9 +99,9 @@ class QuizResult_Screen extends StatelessWidget {
               AppSpacing.h16,
 
               // Quiz topic options
-              _buildQuizTopicOption(AppStrings.quizButtonCarbonCycle),
+              CustomQuizTopicOption(AppStrings.quizButtonCarbonCycle),
               AppSpacing.h12,
-              _buildQuizTopicOption(AppStrings.quizButtonCoasts),
+              CustomQuizTopicOption(AppStrings.quizButtonCoasts),
               AppSpacing.h32,
 
               // Bottom action buttons
@@ -239,7 +239,7 @@ class QuizResult_Screen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuizTopicOption(String topic) {
+  Widget CustomQuizTopicOption(String topic) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.w),

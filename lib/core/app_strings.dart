@@ -54,6 +54,8 @@ class AppStrings {
   static const String passwordChangedTitle = "Password Changed!";
   static const String passwordChangedMessage =
       "Your password has been changed successfully.";
+
+
   static const String backToLoginButton = "Back To Login";
 
   // --- Screen 1: Create Account / Sign Up ---
@@ -167,10 +169,8 @@ class AppStrings {
 
   // --- Image Set 3: Module Settings (Optional Modules) ---
   static const String moduleSettingTitle = "Module Setting";
-  static const String selectOptionalModuleInstruction =
-  
-      "Select Your Optional Module";
-      static const String selectQuantity = "Select Quantity";
+  static const String selectOptionalModuleInstruction ="Select Your Optional Module";
+  static const String selectQuantity = "Select Quantity";
   static const String moduleCoasts = "COASTS";
   static const String moduleGlaciers = "GLACIERS are great";
   static const String moduleRegeneratingPlace = "REGENERATING PLACE";
