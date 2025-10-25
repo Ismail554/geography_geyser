@@ -136,12 +136,12 @@ class AppStrings {
   static const String changePasswordButton = "Change Password";
 
   // --- Image 4: Edit Profile Form ---
-  static const String chooseAvatarLink = "Choose Avatar";
+  static const String choosePhoto = "Choose Photo";
   static const String nameLabel = "Name";
   static const String nameFieldValue = "Simon Anderson"; // Field value example
   static const String emailFieldValue =
-      "Simon123@gmail.com"; // Field value example
-  static const String currentPasswordEditLabel = "Current Password";
+      "ex: Simon123@gmail.com"; // Field value example
+  static const String currentPasswordEditLabel = "Enter your current Password";
   static const String saveChangesButton = "Save Changes";
   // --- Image Set 1: Quiz Settings (Question Count) ---
   static const String questionCount10 = "10 QUESTION";
@@ -168,7 +168,9 @@ class AppStrings {
   // --- Image Set 3: Module Settings (Optional Modules) ---
   static const String moduleSettingTitle = "Module Setting";
   static const String selectOptionalModuleInstruction =
+  
       "Select Your Optional Module";
+      static const String selectQuantity = "Select Quantity";
   static const String moduleCoasts = "COASTS";
   static const String moduleGlaciers = "GLACIERS are great";
   static const String moduleRegeneratingPlace = "REGENERATING PLACE";

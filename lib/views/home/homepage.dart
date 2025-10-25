@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
+import 'package:geography_geyser/views/modules/module_home.dart';
 import 'package:geography_geyser/views/profile/profile_screen.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   final List<Widget> _pages = [
     const HomeContent(),
-    const Center(child: Text("📘 Module Page")),
+    const ModuleHome_screen(),
     const ProfileScreen(hideSettingsCard: false),
   ];
 
@@ -239,7 +240,7 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.h,
+      // height: 100.h,
       padding: EdgeInsets.all(8.r),
       decoration: BoxDecoration(
         border: Border.all(
@@ -295,7 +296,7 @@ class LastActivityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 100.h,
+        // height: 100.h,
         width: double.infinity,
         padding: EdgeInsets.all(8.r),
         decoration: BoxDecoration(

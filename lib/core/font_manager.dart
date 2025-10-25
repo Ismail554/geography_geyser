@@ -27,11 +27,11 @@ class FontManager {
     color: Colors.black,
   );
   // Title Text
-  static TextStyle titleText() => TextStyle(
+  static TextStyle titleText({Color color = mainTextColor}) => TextStyle(
     fontFamily: inter,
     fontSize: 22.sp,
     fontWeight: w700,
-    color: mainTextColor,
+    color: color,
     height: 1.0,
     letterSpacing: 0.0,
   );
@@ -126,8 +126,8 @@ class FontManager {
   // AppBar Text
   static TextStyle appBarText({Color color = mainTextColor}) => TextStyle(
     fontFamily: inter,
-    fontSize: 16.sp,
-    fontWeight: w700,
+    fontSize: 22.sp,
+    fontWeight: w800,
 
     color: color,
     height: 1.0,
@@ -175,5 +175,16 @@ class FontManager {
     color: color,
     height: 1.0,
     letterSpacing: 0.72.sp,
+  );
+  // Splash title
+  static TextStyle splashTitle({
+    double fontSize = 40,
+    Color color = Colors.black,
+  }) => GoogleFonts.notoSans(
+    fontSize: fontSize.sp,
+    fontWeight: w800,
+    color: color,
+    height: 1.0,
+    letterSpacing: 0.sp,
   );
 }

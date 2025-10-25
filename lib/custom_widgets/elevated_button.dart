@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_padding.dart';
+import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 
@@ -26,7 +27,7 @@ class ElevatedButtonCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: EdgeInsets.all(12.0),
       child: SizedBox(
         width: double.infinity.w,
         height: 48.h,
@@ -48,7 +49,7 @@ class ElevatedButtonCustom extends StatelessWidget {
             children: [
               if (iconPath != null) ...[
                 Image.asset(iconPath!, height: 20.h, width: 20.w),
-                SizedBox(width: 8.w),
+                AppSpacing.w8,
               ],
               Text(
                 text ?? AppStrings.logInButton,

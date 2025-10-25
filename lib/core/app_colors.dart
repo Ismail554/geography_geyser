@@ -30,4 +30,5 @@ class AppColors {
   static const Color statFillColor = Color(0xf1E90FF26);
   // static const Color buttonColor = Colors.lightBlueAccent;
   static const Color buttonColor = Color(0xFF52B1FF);
+    static const Color splashBG = Color(0xffA8D8FF);
 }

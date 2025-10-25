@@ -16,11 +16,10 @@ class OptionalModuleSettings extends StatefulWidget {
 }
 
 class _OptionalModuleSettingsState extends State<OptionalModuleSettings> {
-  // Track selections for each row
-  bool row1LeftSelected = true; // COASTS selected
-  bool row2RightSelected = true; // HHRI selected
-  bool row3LeftSelected = false; // MIGRATION not selected
-  bool row3RightSelected = false; // COASTS not selected
+  bool row1LeftSelected = true;
+  bool row2RightSelected = true;
+  bool row3LeftSelected = false;
+  bool row3RightSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class _OptionalModuleSettingsState extends State<OptionalModuleSettings> {
         backgroundColor: AppColors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
@@ -40,81 +39,85 @@ class _OptionalModuleSettingsState extends State<OptionalModuleSettings> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppSpacing.h20,
+        child: Column(
+          children: [
+            // Scrollable content
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppSpacing.h20,
 
-              // Title
-              Text(
-                AppStrings.selectOptionalModuleInstruction,
-                style: FontManager.bigTitle(),
-              ),
-              AppSpacing.h32,
+                    Text(
+                      AppStrings.selectOptionalModuleInstruction,
+                      style: FontManager.bigTitle(),
+                    ),
+                    AppSpacing.h32,
 
-              // Module Selection Rows
-              Column(
-                children: [
-                  ModuleSelectionRow(
-                    leftOption: AppStrings.moduleCoasts,
-                    rightOption: AppStrings.moduleCoasts,
-                    isLeftSelected: row1LeftSelected,
-                    isRightSelected: !row1LeftSelected,
-                    onSelectionChanged: (isLeft) {
-                      setState(() {
-                        row1LeftSelected = isLeft;
-                      });
-                    },
-                  ),
-                  AppSpacing.h16,
+                    // Module Selection Rows
+                    ModuleSelectionRow(
+                      leftOption: AppStrings.moduleCoasts,
+                      rightOption: AppStrings.moduleCoasts,
+                      isLeftSelected: row1LeftSelected,
+                      isRightSelected: !row1LeftSelected,
+                      onSelectionChanged: (isLeft) {
+                        setState(() {
+                          row1LeftSelected = isLeft;
+                        });
+                      },
+                    ),
+                    AppSpacing.h16,
 
-                  ModuleSelectionRow(
-                    leftOption: AppStrings.moduleGlaciers,
-                    rightOption: AppStrings.moduleHHRI,
-                    isLeftSelected: !row2RightSelected,
-                    isRightSelected: row2RightSelected,
-                    onSelectionChanged: (isLeft) {
-                      setState(() {
-                        row2RightSelected = !isLeft;
-                      });
-                    },
-                  ),
-                  AppSpacing.h16,
+                    ModuleSelectionRow(
+                      leftOption: AppStrings.moduleGlaciers,
+                      rightOption: AppStrings.moduleHHRI,
+                      isLeftSelected: !row2RightSelected,
+                      isRightSelected: row2RightSelected,
+                      onSelectionChanged: (isLeft) {
+                        setState(() {
+                          row2RightSelected = !isLeft;
+                        });
+                      },
+                    ),
+                    AppSpacing.h16,
 
-                  ModuleSelectionRow(
-                    leftOption: AppStrings.moduleMigrations,
-                    rightOption: AppStrings.moduleCoasts,
-                    isLeftSelected: row3LeftSelected,
-                    isRightSelected: row3RightSelected,
-                    onSelectionChanged: (isLeft) {
-                      setState(() {
-                        row3LeftSelected = isLeft;
-                        row3RightSelected = !isLeft;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Divider(),
-              AppSpacing.h40,
-
-              Padding(
-                padding: EdgeInsets.all(4.0),
-                child: CustomLoginButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePageScreen()),
-                    );
-                  },
-                  text: AppStrings.goHome,
+                    ModuleSelectionRow(
+                      leftOption: AppStrings.moduleMigrations,
+                      rightOption: AppStrings.moduleCoasts,
+                      isLeftSelected: row3LeftSelected,
+                      isRightSelected: row3RightSelected,
+                      onSelectionChanged: (isLeft) {
+                        setState(() {
+                          row3LeftSelected = isLeft;
+                          row3RightSelected = !isLeft;
+                        });
+                      },
+                    ),
+                    AppSpacing.h20,
+                  ],
                 ),
               ),
-              AppSpacing.h20,
-            ],
-          ),
+            ),
+
+            // Go to Home Button
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+              child: CustomLoginButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomePageScreen(),
+                    ),
+                  );
+                },
+                text: AppStrings.goHome,
+              ),
+            ),
+            AppSpacing.h16,
+          ],
         ),
       ),
     );

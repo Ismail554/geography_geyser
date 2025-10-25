@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 
 class BuildTextField extends StatelessWidget {
@@ -12,6 +13,7 @@ class BuildTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final String? errorText;
+  final Color bgcolor;
   final Function(String)? onChanged;
 
   const BuildTextField({
@@ -20,6 +22,7 @@ class BuildTextField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.prefixIcon,
+    this.bgcolor = AppColors.greyE8,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
     this.suffixIcon,
@@ -49,9 +52,12 @@ class BuildTextField extends StatelessWidget {
         TextField(
           controller: controller,
           keyboardType: keyboardType,
+
           obscureText: obscureText || isPassword,
           onChanged: onChanged,
           decoration: InputDecoration(
+            filled: true,
+            fillColor: bgcolor,
             hintText: hint,
             hintStyle: TextStyle(fontSize: 14.sp, color: Colors.grey[400]),
             contentPadding: EdgeInsets.symmetric(

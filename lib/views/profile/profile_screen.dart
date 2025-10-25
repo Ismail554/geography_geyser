@@ -5,6 +5,7 @@ import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
+import 'package:geography_geyser/views/profile/edit_profile_op.dart';
 
 class ProfileScreen extends StatelessWidget {
   final bool hideSettingsCard;
@@ -111,18 +112,26 @@ class ProfileScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
+          // Edit Profile Row
           buildSettingRow(
             icon: Icons.person_outline,
             text: AppStrings.editProfileOption,
             onTap: () {},
           ),
           Divider(height: 1, color: Colors.grey[300]),
+          // Module Settings Row
           buildSettingRow(
             icon: Icons.settings_outlined,
             text: AppStrings.moduleSettingOption,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfileOption()),
+              );
+            },
           ),
           Divider(height: 1, color: Colors.grey[300]),
+          // Logout Row
           buildSettingRow(
             icon: Icons.logout_outlined,
             text: AppStrings.logOutOption,
