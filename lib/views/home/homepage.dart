@@ -77,7 +77,7 @@ class HomeContent extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
-                color: const Color(0xFFE8F0FE),
+                color: AppColors.cardBG,
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: Row(
@@ -207,16 +207,19 @@ class HomeContent extends StatelessWidget {
               icon: Icons.quiz_outlined,
               label: 'Take a Quiz',
               onTap: () {
-                // Handle Take a Quiz navigation
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ModuleHome_screen()),
+                );
               },
             ),
-            ActionButton(
-              icon: Icons.settings_outlined,
-              label: 'Module Settings',
-              onTap: () {
-                // Handle Module Settings navigation
-              },
-            ),
+            // ActionButton(
+            //   icon: Icons.settings_outlined,
+            //   label: 'Module Settings',
+            //   onTap: () {
+            //     // Handle Module Settings navigation
+            //   },
+            // ),
           ],
         ),
       ),
@@ -241,7 +244,7 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // height: 100.h,
-      padding: EdgeInsets.all(8.r),
+      padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 24.0.h),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.blue.withOpacity(0.3),
@@ -261,7 +264,7 @@ class InfoCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, color: Colors.blue, size: 24),
+          Icon(icon, color: Colors.blue, size: 36),
           AppSpacing.h6,
           Text(
             title,
@@ -298,7 +301,7 @@ class LastActivityCard extends StatelessWidget {
       child: Container(
         // height: 100.h,
         width: double.infinity,
-        padding: EdgeInsets.all(8.r),
+        padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 20.0.h),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12.r),
@@ -319,7 +322,7 @@ class LastActivityCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.access_time, color: Colors.blue, size: 20),
+            Icon(Icons.access_time, color: Colors.blue, size: 36),
             AppSpacing.h2,
             Text(
               'Last Activity',
@@ -340,7 +343,7 @@ class LastActivityCard extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(height: 2.h),
+            AppSpacing.h2,
             Text(
               'Topic: Globalization',
               style: TextStyle(
