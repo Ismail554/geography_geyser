@@ -16,6 +16,11 @@ class SelectTime_screen extends StatefulWidget {
 }
 
 class _SelectTime_screenState extends State<SelectTime_screen> {
+  
+  int? selectedIndex; //  Tracks which timer is selected
+
+  final List<int> timeOptions = [5, 10, 15, 20, 25, 30];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +32,7 @@ class _SelectTime_screenState extends State<SelectTime_screen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               Expanded(
@@ -35,31 +40,48 @@ class _SelectTime_screenState extends State<SelectTime_screen> {
                   child: Column(
                     children: [
                       AppSpacing.h16,
-                      CustomModTimer(minutes: 5, isSelected: true),
-                      AppSpacing.h8,
-                      CustomModTimer(minutes: 10),
-                      AppSpacing.h8,
-                      CustomModTimer(minutes: 15),
-                      AppSpacing.h8,
-                      CustomModTimer(minutes: 20),
-                      AppSpacing.h8,
-                      CustomModTimer(minutes: 25),
-                      AppSpacing.h8,
-                      CustomModTimer(minutes: 30),
-                      AppSpacing.h8,
-                      // Add more timers if needed
+
+                      /// Generate all timer blocks
+                      Column(
+                        children: List.generate(timeOptions.length, (index) {
+                          final minutes = timeOptions[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: CustomModTimer(
+                              minutes: minutes,
+                              isSelected: selectedIndex == index,
+                              onPressed: () {
+                                setState(() {
+                                  if (selectedIndex == index) {
+                                    // Deselect if same is tapped again
+                                    selectedIndex = null;
+                                  } else {
+                                    // Select new index
+                                    selectedIndex = index;
+                                  }
+                                });
+                              },
+                            ),
+                          );
+                        }),
+                      ),
+
                       AppSpacing.h12,
+
+                      ///  Custom time field
                       BuildTextField(
                         label: AppStrings.customizeTimeLabel,
                         hint: "EX: 12 Minutes",
                         bgcolor: AppColors.white,
                       ),
+
+                      AppSpacing.h16,
                     ],
                   ),
                 ),
               ),
 
-              /// Button at the bottom
+              ///  Button at bottom
               CustomLoginButton(
                 text: AppStrings.continueButton,
                 onPressed: () {

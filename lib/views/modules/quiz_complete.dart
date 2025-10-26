@@ -24,7 +24,7 @@ class _QuizCompleteScreenState extends State<QuizCompleteScreen> {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             children: [
-              /// ✅ Scrollable content
+              AppSpacing.h36,
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -32,9 +32,9 @@ class _QuizCompleteScreenState extends State<QuizCompleteScreen> {
                       AppSpacing.h20,
                       Text(
                         AppStrings.quizCompleteTitle,
-                        style: FontManager.titleText(),
+                        style: FontManager.boldHeading(fontSize: 32.sp),
                       ),
-                      AppSpacing.h24,
+                      AppSpacing.h32,
 
                       // ✅ Stats Container
                       Container(

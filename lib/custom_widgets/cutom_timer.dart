@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 
 class CustomModTimer extends StatelessWidget {
@@ -13,7 +12,6 @@ class CustomModTimer extends StatelessWidget {
     required this.minutes,
     this.onPressed,
     this.isSelected = false,
-    String? text,
   });
 
   @override
@@ -24,7 +22,6 @@ class CustomModTimer extends StatelessWidget {
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 12.w),
-        margin: EdgeInsets.only(bottom: 10.h),
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFFE8F4FF) : const Color(0xFFF5FBFF),
           borderRadius: BorderRadius.circular(12.r),
