@@ -37,11 +37,11 @@ class _ModuleHome_screenState extends State<ModuleHome_screen> {
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => HomePageScreen()),
+              MaterialPageRoute(builder: (context) => const HomePageScreen()),
               (route) => false,
             );
           },
@@ -52,48 +52,34 @@ class _ModuleHome_screenState extends State<ModuleHome_screen> {
         ),
         centerTitle: true,
       ),
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
-              children: [
-                /// Generate all module blocks
-                Column(
-                  children: List.generate(moduleOptions.length, (index) {
-                    final moduleText = moduleOptions[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 14.0),
-                      child: CustomModule(
-                        text: moduleText,
-                        isSelected: selectedIndex == index,
-                        onPressed: () {
-                          setState(() {
-                            if (selectedIndex == index) {
-                              // Deselect if same is tapped again
-                              selectedIndex = null;
-                            } else {
-                              // Select new index
-                              selectedIndex = index;
-                            }
-                          });
+              children: List.generate(moduleOptions.length, (index) {
+                final moduleText = moduleOptions[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 14.0),
+                  child: CustomModule(
+                    text: moduleText,
+                    isSelected: selectedIndex == index,
+                    onPressed: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
 
-                          // Navigate to SelectTime_screen only for tectonics subject
-                          if (moduleText == AppStrings.tectonicsSubject) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SelectTime_screen(),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    );
-                  }),
-                ),
-              ],
+                      // 👇 Navigate to next screen (for all modules)
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SelectTime_screen(),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }),
             ),
           ),
         ),

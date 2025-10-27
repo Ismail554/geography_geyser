@@ -4,7 +4,10 @@ import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
+import 'package:geography_geyser/custom_widgets/custom_module.dart';
 import 'package:geography_geyser/views/home/homepage.dart';
+import 'package:geography_geyser/views/modules/module_home.dart';
+import 'package:geography_geyser/views/modules/select_time.dart';
 
 class QuizResult_Screen extends StatelessWidget {
   const QuizResult_Screen({super.key});
@@ -34,7 +37,6 @@ class QuizResult_Screen extends StatelessWidget {
                 width: double.infinity,
                 padding: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(
-                  
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(12.r),
                   boxShadow: [
@@ -54,7 +56,7 @@ class QuizResult_Screen extends StatelessWidget {
                       value: AppStrings.correctValue,
                       valueColor: AppColors.green,
                     ),
-                    AppSpacing.h16,
+                    // AppSpacing.h8,
                     buildResultRow(
                       icon: Icons.cancel,
                       iconColor: AppColors.red,
@@ -62,7 +64,7 @@ class QuizResult_Screen extends StatelessWidget {
                       value: AppStrings.incorrectValue,
                       valueColor: AppColors.red,
                     ),
-                    AppSpacing.h16,
+                    // AppSpacing.h8,
                     buildResultRow(
                       icon: Icons.emoji_events,
                       iconColor: AppColors.yellow,
@@ -70,7 +72,7 @@ class QuizResult_Screen extends StatelessWidget {
                       value: AppStrings.scoreValue,
                       valueColor: AppColors.yellow,
                     ),
-                    AppSpacing.h16,
+                    // AppSpacing.h8,
                     buildResultRow(
                       icon: Icons.star,
                       iconColor: AppColors.yellow,
@@ -78,8 +80,8 @@ class QuizResult_Screen extends StatelessWidget {
                       value: AppStrings.gradeValue,
                       valueColor: AppColors.yellow,
                     ),
-                    AppSpacing.h16,
-                    _buildXPGainedRow(),
+                    AppSpacing.h8,
+                    buildXPGainedRow(),
                   ],
                 ),
               ),
@@ -99,9 +101,31 @@ class QuizResult_Screen extends StatelessWidget {
               AppSpacing.h16,
 
               // Quiz topic options
-              CustomQuizTopicOption(AppStrings.quizButtonCarbonCycle),
+              CustomModule(
+                text: 'Carbon Cycle',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SelectTime_screen(),
+                    ),
+                  );
+                },
+              ),
+              // CustomQuizTopicOption(AppStrings.quizButtonCarbonCycle),
               AppSpacing.h12,
-              CustomQuizTopicOption(AppStrings.quizButtonCoasts),
+              CustomModule(
+                text: "Coasts",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SelectTime_screen(),
+                    ),
+                  );
+                },
+              ),
+              // CustomQuizTopicOption(AppStrings.quizButtonCoasts),
               AppSpacing.h32,
 
               // Bottom action buttons
@@ -110,7 +134,12 @@ class QuizResult_Screen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Retry quiz logic
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ModuleHome_screen(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green,
@@ -172,36 +201,44 @@ class QuizResult_Screen extends StatelessWidget {
     required String value,
     required Color valueColor,
   }) {
-    return Row(
-      children: [
-        Container(
-          width: 40.w,
-          height: 40.w,
-          decoration: BoxDecoration(color: iconColor, shape: BoxShape.circle),
-          child: Icon(icon, color: AppColors.white, size: 20.sp),
-        ),
-        AppSpacing.w16,
-        Expanded(
-          child: Text(
-            label,
-            style: FontManager.bodyText().copyWith(
-              color: iconColor,
-              fontWeight: FontWeight.w600,
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
+        child: Row(
+          children: [
+            Container(
+              width: 40.w,
+              height: 40.w,
+              decoration: BoxDecoration(
+                color: iconColor,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: AppColors.white, size: 20.sp),
             ),
-          ),
+            AppSpacing.w16,
+            Expanded(
+              child: Text(
+                label,
+                style: FontManager.bodyText().copyWith(
+                  color: iconColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            Text(
+              value,
+              style: FontManager.boldHeading(fontSize: 18, color: valueColor),
+            ),
+          ],
         ),
-        Text(
-          value,
-          style: FontManager.boldHeading(fontSize: 18, color: valueColor),
-        ),
-      ],
+      ),
     );
   }
 
-  Widget _buildXPGainedRow() {
+  Widget buildXPGainedRow() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: AppColors.green,
         borderRadius: BorderRadius.circular(8.r),

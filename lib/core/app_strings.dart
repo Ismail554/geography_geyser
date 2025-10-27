@@ -55,7 +55,6 @@ class AppStrings {
   static const String passwordChangedMessage =
       "Your password has been changed successfully.";
 
-
   static const String backToLoginButton = "Back To Login";
 
   // --- Screen 1: Create Account / Sign Up ---
@@ -142,7 +141,7 @@ class AppStrings {
   static const String nameLabel = "Name";
   static const String nameFieldValue = "Simon Anderson"; // Field value example
   static const String emailFieldValue =
-      "ex: Simon123@gmail.com"; // Field value example
+      "Simon123@gmail.com"; // Field value example
   static const String currentPasswordEditLabel = "Enter your current Password";
   static const String saveChangesButton = "Save Changes";
   // --- Image Set 1: Quiz Settings (Question Count) ---
@@ -169,7 +168,8 @@ class AppStrings {
 
   // --- Image Set 3: Module Settings (Optional Modules) ---
   static const String moduleSettingTitle = "Module Setting";
-  static const String selectOptionalModuleInstruction ="Select Your Optional Module";
+  static const String selectOptionalModuleInstruction =
+      "Select Your Optional Module";
   static const String selectQuantity = "Select Quantity";
   static const String moduleCoasts = "COASTS";
   static const String moduleGlaciers = "GLACIERS are great";

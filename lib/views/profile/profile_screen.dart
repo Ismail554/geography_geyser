@@ -7,6 +7,8 @@ import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
 import 'package:geography_geyser/views/home/op_mod_settings.dart';
 import 'package:geography_geyser/views/profile/edit_profile_op.dart';
+import 'package:geography_geyser/views/profile/settings/general_settings.dart';
+import 'package:geography_geyser/views/profile/settings/privacy_settings.dart';
 
 class ProfileScreen extends StatelessWidget {
   final bool hideSettingsCard;
@@ -24,15 +26,20 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Back Button
-              Row(
-                children: [
-                  Icon(Icons.arrow_back, color: Colors.black),
-                  AppSpacing.w8,
-                  Text(
-                    'Back',
-                    style: FontManager.bodyText(color: Colors.black),
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  children: [
+                    Icon(Icons.arrow_back, color: Colors.black),
+                    AppSpacing.w8,
+                    Text(
+                      'Back',
+                      style: FontManager.bodyText(color: Colors.black),
+                    ),
+                  ],
+                ),
               ),
 
               AppSpacing.h24,
@@ -116,14 +123,28 @@ class ProfileScreen extends StatelessWidget {
           buildSettingRow(
             icon: Icons.settings_outlined,
             text: AppStrings.generalSetting,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GeneralSettings_Screen(),
+                ),
+              );
+            },
           ),
           Divider(height: 1, color: Colors.grey[300]),
           //Privacy settings
           buildSettingRow(
             icon: Icons.lock_outline,
             text: AppStrings.privacySetting,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PrivacySettings_Screen(),
+                ),
+              );
+            },
           ),
           Divider(height: 1, color: Colors.grey[300]),
           // Module Settings Row
