@@ -6,14 +6,19 @@ import 'package:geography_geyser/custom_widgets/custom_q_quantity.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/modules/quiz_screen.dart';
 
-class SelectQuantity_Screen extends StatefulWidget {
-  const SelectQuantity_Screen({super.key});
+class SelectQuantityScreen extends StatefulWidget {
+
+  const SelectQuantityScreen({super.key,});
 
   @override
-  State<SelectQuantity_Screen> createState() => _SelectQuantity_ScreenState();
+  State<SelectQuantityScreen> createState() => _SelectQuantityScreenState();
 }
 
-class _SelectQuantity_ScreenState extends State<SelectQuantity_Screen> {
+class _SelectQuantityScreenState extends State<SelectQuantityScreen> {
+  int? selectedIndex;
+
+  final List<int> quantityOptions = [10, 20, 30, 40, 50, 60, 70, 80];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,28 +28,43 @@ class _SelectQuantity_ScreenState extends State<SelectQuantity_Screen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             children: [
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Custom_Q_quantity(question: 10),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 20, isSelected: true),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 30),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 40),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 50, isSelected: true),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 60),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 70, isSelected: true),
-                      AppSpacing.h8,
-                      Custom_Q_quantity(question: 80),
+                      AppSpacing.h16,
+
+                      /// Generate all quantity blocks
+                      Column(
+                        children: List.generate(quantityOptions.length, (
+                          index,
+                        ) {
+                          final questions = quantityOptions[index];
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 8.0),
+                            child: Custom_Q_quantity(
+                              question: questions,
+                              isSelected: selectedIndex == index,
+                              onPressed: () {
+                                setState(() {
+                                  if (selectedIndex == index) {
+                                    // again select korle abar deselect(null) kore dibe
+                                    selectedIndex = null;
+                                  } else {
+                                    // Select new index
+                                    selectedIndex = index;
+                                  }
+                                });
+                              },
+                            ),
+                          );
+                        }),
+                      ),
+
+                      AppSpacing.h16,
                     ],
                   ),
                 ),
@@ -56,7 +76,7 @@ class _SelectQuantity_ScreenState extends State<SelectQuantity_Screen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => QuizScreen()),
+                    MaterialPageRoute(builder: (context) => QuizScreen(selectedIndex: selectedIndex,)),
                   );
                 },
               ),

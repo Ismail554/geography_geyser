@@ -6,6 +6,7 @@ import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/custom_widgets/module_button.dart';
+import 'package:geography_geyser/views/modules/quiz_screen.dart';
 
 class QuizCompleteScreen extends StatefulWidget {
   const QuizCompleteScreen({super.key});
@@ -163,7 +164,14 @@ class _QuizCompleteScreenState extends State<QuizCompleteScreen> {
                     AppSpacing.w16,
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => QuizScreen(),
+                            ),
+                          );
+                        },
 
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.buttonColor,

@@ -22,7 +22,7 @@ class BuildTextField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.prefixIcon,
-    this.bgcolor = AppColors.greyE8,
+    this.bgcolor = AppColors.white,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
     this.suffixIcon,
@@ -82,7 +82,7 @@ class BuildTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(
-                color: errorText != null ? Colors.red : Colors.black,
+                color: errorText != null ? Colors.red : Colors.grey,
                 width: 1.5,
               ),
             ),

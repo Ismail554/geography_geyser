@@ -15,6 +15,7 @@ class CustomModule extends StatelessWidget {
   final Widget? trailing;
   final EdgeInsetsGeometry? padding;
   final double? borderRadius;
+  final bool isSelected;
 
   const CustomModule({
     super.key,
@@ -29,6 +30,7 @@ class CustomModule extends StatelessWidget {
     this.trailing,
     this.padding,
     this.borderRadius,
+    this.isSelected = false,
   });
 
   @override
@@ -38,10 +40,18 @@ class CustomModule extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
       child: Container(
         width: double.infinity,
-        padding: padding ?? EdgeInsets.symmetric(vertical: 14.h, horizontal: 8.w),
+        padding:
+            padding ?? EdgeInsets.symmetric(vertical: 14.h, horizontal: 8.w),
         decoration: BoxDecoration(
-          color: backgroundColor ?? AppColors.white,
-          border: Border.all(color: borderColor ?? Colors.blueAccent),
+          color: isSelected
+              ? const Color(0xFFE8F4FF)
+              : (backgroundColor ?? AppColors.white),
+          border: Border.all(
+            color: isSelected
+                ? Colors.blueAccent
+                : (borderColor ?? Colors.grey.shade300),
+            width: isSelected ? 1.5 : 1,
+          ),
           borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
           boxShadow: [
             BoxShadow(
@@ -55,25 +65,20 @@ class CustomModule extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (leading != null) ...[
-              leading!,
-              SizedBox(width: 8.w),
-            ],
+            if (leading != null) ...[leading!, SizedBox(width: 8.w)],
             Flexible(
               child: Text(
                 text.toUpperCase(),
                 textAlign: TextAlign.center,
-                style: textStyle ??
+                style:
+                    textStyle ??
                     FontManager.headerSubtitleText(
                       fontSize: fontSize ?? 20,
                       color: Colors.black,
                     ),
               ),
             ),
-            if (trailing != null) ...[
-              SizedBox(width: 8.w),
-              trailing!,
-            ],
+            if (trailing != null) ...[SizedBox(width: 8.w), trailing!],
           ],
         ),
       ),

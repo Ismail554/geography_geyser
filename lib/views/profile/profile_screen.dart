@@ -5,6 +5,7 @@ import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
+import 'package:geography_geyser/views/home/op_mod_settings.dart';
 import 'package:geography_geyser/views/profile/edit_profile_op.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.arrow_back, color: Colors.black),
-                  SizedBox(width: 8.w),
+                  AppSpacing.w8,
                   Text(
                     'Back',
                     style: FontManager.bodyText(color: Colors.black),
@@ -41,12 +42,6 @@ class ProfileScreen extends StatelessWidget {
 
               AppSpacing.h24,
 
-              // Settings Card (conditionally shown)
-              if (!hideSettingsCard) ...[
-                buildSettingsCard(context),
-                AppSpacing.h24,
-              ],
-
               // Progress Section
               buildProgressSection(),
 
@@ -56,6 +51,11 @@ class ProfileScreen extends StatelessWidget {
               buildSubjectPerformanceSection(),
 
               AppSpacing.h40,
+              // Settings Card (conditionally shown)
+              if (!hideSettingsCard) ...[
+                buildSettingsCard(context),
+                AppSpacing.h24,
+              ],
             ],
           ),
         ),
@@ -112,10 +112,17 @@ class ProfileScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Edit Profile Row
+          // General settings
           buildSettingRow(
-            icon: Icons.person_outline,
-            text: AppStrings.editProfileOption,
+            icon: Icons.settings_outlined,
+            text: AppStrings.generalSetting,
+            onTap: () {},
+          ),
+          Divider(height: 1, color: Colors.grey[300]),
+          //Privacy settings
+          buildSettingRow(
+            icon: Icons.lock_outline,
+            text: AppStrings.privacySetting,
             onTap: () {},
           ),
           Divider(height: 1, color: Colors.grey[300]),
@@ -126,7 +133,9 @@ class ProfileScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => EditProfileOption()),
+                MaterialPageRoute(
+                  builder: (context) => OptionalModuleSettings(),
+                ),
               );
             },
           ),
@@ -162,7 +171,7 @@ class ProfileScreen extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: FontManager.appBarText(color: textColor ?? Colors.black),
+                style: FontManager.bodyText(color: textColor ?? Colors.black),
               ),
             ),
             Icon(Icons.arrow_forward_ios, color: Colors.grey[600], size: 16.sp),
