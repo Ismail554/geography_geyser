@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/font_manager.dart';
-import 'package:marquee/marquee.dart';
+
 
 class ModuleSelectionRow extends StatelessWidget {
   final String leftOption;
@@ -95,32 +95,34 @@ class ModuleSelectionRow extends StatelessWidget {
 
             // Text (Marquee if long)
             Expanded(
-              child: shouldAnimate
-                  ? SizedBox(
-                      height: 20.h,
-                      child: Marquee(
-                        text: text,
-                        style: FontManager.bodyText(
-                          color: Colors.black,
-                        ).copyWith(fontSize: 14.sp),
-                        scrollAxis: Axis.horizontal,
-                        blankSpace: 40.w,
-                        velocity: 40.0,
-                        pauseAfterRound: const Duration(seconds: 1),
-                        startPadding: 10.0,
-                        accelerationDuration: const Duration(seconds: 1),
-                        accelerationCurve: Curves.linear,
-                        decelerationDuration: const Duration(milliseconds: 500),
-                        decelerationCurve: Curves.easeOut,
-                      ),
-                    )
-                  : Text(
-                      text,
-                      style: FontManager.bodyText(
-                        color: Colors.black,
-                      ).copyWith(fontSize: 14.sp),
-                      overflow: TextOverflow.visible,
-                    ),
+              child:
+                  //  shouldAnimate
+                  //     ? SizedBox(
+                  //         height: 20.h,
+                  //         child: Marquee(
+                  //           text: text,
+                  //           style: FontManager.bodyText(
+                  //             color: Colors.black,
+                  //           ).copyWith(fontSize: 14.sp),
+                  //           scrollAxis: Axis.horizontal,
+                  //           blankSpace: 40.w,
+                  //           velocity: 40.0,
+                  //           pauseAfterRound: const Duration(seconds: 1),
+                  //           startPadding: 10.0,
+                  //           accelerationDuration: const Duration(seconds: 1),
+                  //           accelerationCurve: Curves.linear,
+                  //           decelerationDuration: const Duration(milliseconds: 500),
+                  //           decelerationCurve: Curves.easeOut,
+                  //         ),
+                  //       )
+                  // :
+                  Text(
+                    text,
+                    style: FontManager.bodyText(
+                      color: Colors.black,
+                    ).copyWith(fontSize: 14.sp),
+                    overflow: TextOverflow.visible,
+                  ),
             ),
           ],
         ),

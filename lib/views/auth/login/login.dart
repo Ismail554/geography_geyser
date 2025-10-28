@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/font_manager.dart';
-import 'package:geography_geyser/views/auth/forgot_pass/forgot_pass.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/pass_reset.dart';
 import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
@@ -47,12 +46,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         margin: EdgeInsets.only(bottom: 18.h),
                         width: 100.w,
                         height: 100.h,
+
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: const Color(0xFF4CAF50),
-                            width: 4,
-                          ),
+                          // shape: BoxShape.circle,
+                          // border: Border.all(
+                          //   color: const Color(0xFF4CAF50),
+                          //   width: 4,
+                          // ),
                           image: const DecorationImage(
                             image: AssetImage('assets/images/logo.png'),
                             fit: BoxFit.cover,
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Text(
                         'GEOGRAPHY\nGEYSER',
-                        style: FontManager.titleText(),
+                        style: FontManager.splashTitle(fontSize: 24.sp),
                         textAlign: TextAlign.center,
                       ),
                       AppSpacing.h24,
@@ -227,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         AppSpacing.h20,
 
                         // Google login
-                       GoogleLoginBtn(),
+                        GoogleLoginBtn(),
                         AppSpacing.h16,
 
                         // Create Account

@@ -6,8 +6,6 @@ import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
-import 'package:geography_geyser/views/auth/forgot_pass/congratulations.dart';
-import 'package:geography_geyser/views/auth/forgot_pass/new_pass.dart';
 import 'package:geography_geyser/views/auth/sign_up/reg_congratulations.dart';
 import 'package:pinput/pinput.dart';
 
@@ -157,6 +155,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       AppSpacing.h32,
                       Center(
                         child: Pinput(
+                          keyboardType: TextInputType.phone,
                           controller: _pinController,
                           focusNode: _pinFocusNode,
                           length: 6,
