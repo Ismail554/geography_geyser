@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
+import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/pass_reset.dart';
 import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
@@ -29,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: AppColors.splashBG,
       resizeToAvoidBottomInset: true,
       body: Column(
         children: [
@@ -60,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Text(
-                        'GEOGRAPHY\nGEYSER',
+                        AppStrings.appName,
+
                         style: FontManager.splashTitle(fontSize: 24.sp),
                         textAlign: TextAlign.center,
                       ),
@@ -119,8 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Password Field
                         BuildTextField(
-                          label: 'Password',
-                          hint: 'Enter your password',
+                          label: AppStrings.passwordLabel,
+                          hint: AppStrings.passwordPlaceholder,
                           controller: passwordController,
                           isPassword: true,
                           obscureText: _obscurePassword,
@@ -166,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                             child: Text(
-                              "Forgot Password?",
+                              AppStrings.forgotPassword,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 color: const Color(0xFF42A5F5),
@@ -179,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Login Button
                         CustomLoginButton(
-                          text: 'Login',
+                          text: AppStrings.logInTitle,
                           onPressed: () {
                             // Check if all fields are valid
                             if (_emailError == null &&
@@ -209,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 12.w),
                               child: Text(
-                                'OR Login With',
+                                AppStrings.orLoginWith,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   color: Colors.grey[600],
@@ -234,10 +236,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Center(
                           child: RichText(
                             text: TextSpan(
-                              text: 'Don\'t have an account? ',
+                              text: AppStrings.noAccountPrefix,
                               style: TextStyle(
                                 fontSize: 16.sp,
-                                color: Colors.grey[600],
+                                color: AppColors.subtitleText,
+                                //  Colors.grey[600],
                               ),
                               children: [
                                 TextSpan(
@@ -251,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                       );
                                     },
-                                  text: 'Create Account',
+                                  text: ' ' + AppStrings.createAccountTitle,
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     color: AppColors.primaryColor,

@@ -55,21 +55,24 @@ class _PrivacySettings_ScreenState extends State<PrivacySettings_Screen> {
                       hint: AppStrings.confirmNewPasswordLabel,
                     ),
                     AppSpacing.h12,
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PassResetScreen(),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PassResetScreen(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            AppStrings.forgotPassword,
+                            style: FontManager.subtitleText(
+                              color: AppColors.blue,
                             ),
-                          );
-                        },
-                        child: Text(
-                          AppStrings.forgotPassword,
-                          style: FontManager.subtitleText(
-                            color: AppColors.blue,
                           ),
                         ),
                       ),

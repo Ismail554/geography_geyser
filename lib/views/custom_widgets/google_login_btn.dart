@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
+import 'package:geography_geyser/core/app_strings.dart';
 
 class GoogleLoginBtn extends StatelessWidget {
   const GoogleLoginBtn({super.key});
@@ -30,7 +31,8 @@ class GoogleLoginBtn extends StatelessWidget {
             ),
             AppSpacing.w8,
             Text(
-              'Google',
+              // 'Google',
+              AppStrings.googleLogin,
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,

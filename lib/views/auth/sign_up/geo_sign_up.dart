@@ -101,7 +101,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: AppColors.splashBG,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -114,11 +114,11 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                   width: 100.w,
                   height: 100.h,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: const Color(0xFF4CAF50),
-                      width: 4,
-                    ),
+                    // shape: BoxShape.circle,
+                    // border: Border.all(
+                    //   color: const Color(0xFF4CAF50),
+                    //   width: 4,
+                    // ),
                     image: const DecorationImage(
                       image: AssetImage('assets/images/logo.png'),
                       fit: BoxFit.cover,
@@ -130,8 +130,9 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'GEOGRAPHY \n     Geyser'.toUpperCase(),
-                    style: FontManager.titleText(),
+                    AppStrings.appName,
+                    style: FontManager.splashTitle(fontSize: 24.sp),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 AppSpacing.h24,
@@ -155,7 +156,8 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                     Align(
                       alignment: Alignment.topRight,
                       child: Text(
-                        'Create account',
+                        AppStrings.signUpButton,
+
                         style: TextStyle(
                           fontFamily: 'SegoeUI',
                           fontSize: 24.sp,
@@ -168,7 +170,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
 
                     // Full Name Field
                     BuildTextField(
-                      label: 'Full Name',
+                      label: AppStrings.fullNameLabel,
                       hint: 'Enter Full Name',
                       controller: _fullNameController,
                     ),

@@ -1,6 +1,6 @@
 class AppStrings {
   // General
-  static const String appName = "Newwork";
+  static const String appName = "Geography\nGeyser";
 
   // Welcome / Intro
 
@@ -16,7 +16,7 @@ class AppStrings {
   // Normal Sign Up
   static const String logInTitle = "Login";
   static const String passwordLabel = "Password";
-  static const String passwordPlaceholder = "Enter Password";
+  static const String passwordPlaceholder = "Enter your Password";
   static const String forgotPassword = "Forgot Password?";
   static const String logInButton = "Login";
   static const String orLoginWith = "OR Login With";

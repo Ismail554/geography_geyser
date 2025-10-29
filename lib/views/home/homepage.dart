@@ -34,26 +34,26 @@ class _HomePageScreenState extends State<HomePageScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTap,
-        selectedItemColor: Color(0xFF007BFF),
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
+        selectedItemColor: AppColors.blue,
+        unselectedItemColor: AppColors.grey,
+        backgroundColor: AppColors.white,
         type: BottomNavigationBarType.fixed,
         elevation: 10,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
-            label: 'Home',
+            label: AppStrings.homeButton,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book_outlined),
             activeIcon: Icon(Icons.menu_book),
-            label: 'Module',
+            label: AppStrings.navBarModule,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
-            label: 'Profile',
+            label: AppStrings.navBarProfile,
           ),
         ],
       ),

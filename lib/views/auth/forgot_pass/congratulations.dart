@@ -40,7 +40,7 @@ class CongratulationsScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.popUntil(context, (route) => route.isFirst);
                       },
-                      text: "Back to Login",
+                      text:AppStrings.backToLogin,
                       backgroundColor: Colors.blue,
                     ),
                   ],

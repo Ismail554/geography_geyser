@@ -105,7 +105,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               ),
               Text(
                 AppStrings.verifyAccountTitle,
-                style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700),
+                style: FontManager.bigTitle(fontSize: 22),
+                //  TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700),
               ),
               Text(AppStrings.almostDone),
               AppSpacing.h16,
@@ -115,11 +116,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   width: double.infinity,
                   padding: EdgeInsets.all(20.r),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: AppColors.black.withOpacity(0.05),
                         blurRadius: 8,
                         offset: Offset(0, 4),
                       ),
@@ -131,8 +132,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       Center(
                         child: Image.asset(
                           "assets/images/security_vec.png",
-                          width: 120.w,
-                          height: 120.h,
+                          // width: 180.w,
+                          height: 180.h,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -227,12 +228,14 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                             elevation: 0,
                           ),
                           child: Text(
-                            'Verify Account',
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
+                            AppStrings.verifyAccountTitle,
+                            // 'Verify Account',
+                            style: FontManager.buttonTextRegular(),
+                            // TextStyle(
+                            //   fontSize: 16.sp,
+                            //   fontWeight: FontWeight.w600,
+                            //   color: AppColors.white,
+                            // ),
                           ),
                         ),
                       ),
@@ -240,11 +243,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       // Resend Code Timer
                       Text(
                         'Resend code in ${_resendTimer}s',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
+                        style: FontManager.buttonText(),
+                        //  TextStyle(
+                        //   fontSize: 14.sp,
+                        //   fontWeight: FontWeight.w500,
+                        //   color: Colors.black87,
+                        // ),
                       ),
 
                       // Help Text

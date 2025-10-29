@@ -24,7 +24,7 @@ class QuizResult_Screen extends StatelessWidget {
               // Title
               Text(
                 AppStrings.quizCompleteTitle,
-                style: FontManager.boldHeading(
+                style: FontManager.bigTitle(
                   fontSize: 28,
                   color: AppColors.blue,
                 ),
@@ -81,7 +81,10 @@ class QuizResult_Screen extends StatelessWidget {
                       valueColor: AppColors.yellow,
                     ),
                     AppSpacing.h8,
-                    buildXPGainedRow(),
+                    buildXPGainedRow(
+                      labelText: AppStrings.xpGainedLabel,
+                      valueText: AppStrings.xpGainedValue,
+                    ),
                   ],
                 ),
               ),
@@ -101,29 +104,41 @@ class QuizResult_Screen extends StatelessWidget {
               AppSpacing.h16,
 
               // Quiz topic options
-              CustomModule(
-                text: 'Carbon Cycle',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SelectTime_screen(),
-                    ),
-                  );
-                },
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.blueTransparent),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: CustomModule(
+                  text: AppStrings.carbonCycleSubject,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectTime_screen(),
+                      ),
+                    );
+                  },
+                ),
               ),
               // CustomQuizTopicOption(AppStrings.quizButtonCarbonCycle),
               AppSpacing.h12,
-              CustomModule(
-                text: "Coasts",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SelectTime_screen(),
-                    ),
-                  );
-                },
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.blueTransparent),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: CustomModule(
+                  text: AppStrings.coastsSubject,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectTime_screen(),
+                      ),
+                    );
+                  },
+                ),
               ),
               // CustomQuizTopicOption(AppStrings.quizButtonCoasts),
               AppSpacing.h32,
@@ -219,10 +234,9 @@ class QuizResult_Screen extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: FontManager.bodyText().copyWith(
-                  color: iconColor,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: FontManager.generalText(
+                  fontSize: 20,
+                ).copyWith(color: iconColor, fontWeight: FontWeight.w600),
               ),
             ),
             Text(
@@ -235,7 +249,10 @@ class QuizResult_Screen extends StatelessWidget {
     );
   }
 
-  Widget buildXPGainedRow() {
+  Widget buildXPGainedRow({
+    required String labelText,
+    required String valueText,
+  }) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(12.w),
@@ -257,15 +274,16 @@ class QuizResult_Screen extends StatelessWidget {
           AppSpacing.w16,
           Expanded(
             child: Text(
-              AppStrings.xpGainedLabel,
-              style: FontManager.bodyText().copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.w600,
-              ),
+              labelText,
+              // AppStrings.xpGainedLabel,
+              style: FontManager.generalText(
+                fontSize: 16,
+              ).copyWith(color: AppColors.white, fontWeight: FontWeight.w600),
             ),
           ),
           Text(
-            AppStrings.xpGainedValue,
+            valueText,
+            // AppStrings.xpGainedValue,
             style: FontManager.boldHeading(
               fontSize: 18,
               color: AppColors.white,

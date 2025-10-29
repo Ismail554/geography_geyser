@@ -58,7 +58,7 @@ class _GeneralSettings_ScreenState extends State<GeneralSettings_Screen> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text(
+              content: Text(
                 'Unable to access camera or gallery. Please check permissions.',
               ),
               backgroundColor: Colors.red,

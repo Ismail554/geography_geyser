@@ -7,6 +7,10 @@ import 'package:geography_geyser/views/auth/forgot_pass/verify_screen.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 
+///
+/// this screen also refer as Reset Password screen.
+///
+///
 class PassResetScreen extends StatefulWidget {
   const PassResetScreen({super.key});
 
@@ -34,8 +38,9 @@ class _PassResetScreenState extends State<PassResetScreen> {
                 children: [
                   AppSpacing.h56,
                   Text(
-                    'Forgot your Password ?',
-                    style: FontManager.titleText(),
+                    AppStrings.forgotYourPasswordTitle,
+                    // 'Forgot your Password ?',
+                    style: FontManager.boldHeading(color: AppColors.black),
                   ),
                   AppSpacing.h16,
                   Padding(

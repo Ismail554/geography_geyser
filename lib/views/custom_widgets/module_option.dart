@@ -41,19 +41,19 @@ class ModuleOption extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: isSelected ? AppColors.buttonColor : Colors.transparent,
                 border: Border.all(
-                  color: isSelected ? AppColors.buttonColor : Colors.grey,
+                  color: isSelected ? AppColors.buttonColor : AppColors.grey,
                   width: 2,
                 ),
               ),
               child: isSelected
-                  ? Icon(Icons.check, color: Colors.white, size: 12.sp)
+                  ? Icon(Icons.check, color: AppColors.white, size: 12.sp)
                   : null,
             ),
             AppSpacing.w12,
             Text(
               text,
               style: FontManager.bodyText(
-                color: Colors.black,
+                color: AppColors.black,
                
               ),
             ),

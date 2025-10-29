@@ -119,7 +119,7 @@ class ModuleSelectionRow extends StatelessWidget {
                   Text(
                     text,
                     style: FontManager.bodyText(
-                      color: Colors.black,
+                      color: AppColors.black,
                     ).copyWith(fontSize: 14.sp),
                     overflow: TextOverflow.visible,
                   ),

@@ -8,6 +8,17 @@ import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/custom_widgets/module_button.dart';
 import 'package:geography_geyser/views/modules/quiz_screen.dart';
 
+
+
+///
+///
+/// This screen is not under in use. 
+/// Currently using quiz_result.dart as a quiz_complete
+/// 
+/// 
+
+
+
 class QuizCompleteScreen extends StatefulWidget {
   const QuizCompleteScreen({super.key});
 
@@ -246,7 +257,7 @@ class CustomMarkCard extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: FontManager.boldTitleText().copyWith(
+                style: FontManager.bigTitle().copyWith(
                   fontSize: 16.sp,
                   color: Colors.black87,
                 ),

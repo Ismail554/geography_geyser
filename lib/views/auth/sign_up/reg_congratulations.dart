@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
@@ -54,7 +55,7 @@ class _RegCongratulations_ScreenState extends State<RegCongratulations_Screen> {
                         );
                       },
                       text: AppStrings.goHome,
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.blue,
                     ),
                   ],
                 ),

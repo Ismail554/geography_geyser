@@ -21,7 +21,7 @@ class ModuleButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.buttonColor : Colors.white,
+          color: isSelected ? AppColors.buttonColor : AppColors.white,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
             color: isSelected ? AppColors.buttonColor : AppColors.borderColor,
@@ -39,7 +39,7 @@ class ModuleButton extends StatelessWidget {
           child: Text(
             text,
             style: FontManager.bodyText(
-              color: isSelected ? Colors.white : Colors.black,
+              color: isSelected ? AppColors.white : AppColors.black,
               // fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.center,
