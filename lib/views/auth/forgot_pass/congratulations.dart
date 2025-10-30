@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
@@ -10,6 +11,7 @@ class CongratulationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       body: Padding(
         padding: EdgeInsets.all(8.0),
         child: SafeArea(
@@ -40,7 +42,7 @@ class CongratulationsScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.popUntil(context, (route) => route.isFirst);
                       },
-                      text:AppStrings.backToLogin,
+                      text: AppStrings.backToLogin,
                       backgroundColor: Colors.blue,
                     ),
                   ],

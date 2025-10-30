@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/views/home/homepage.dart';
@@ -16,7 +17,9 @@ class _EditProfileOptionState extends State<EditProfileOption> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+         backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+           backgroundColor: AppColors.bgColor,
         title: Text(AppStrings.moduleSettingOption),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

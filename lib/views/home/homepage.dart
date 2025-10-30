@@ -29,6 +29,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: _pages[_currentIndex],
       backgroundColor: AppColors.bgColor,
       bottomNavigationBar: BottomNavigationBar(
@@ -132,7 +133,7 @@ class HomeContent extends StatelessWidget {
                             border: Border.all(color: Colors.blue, width: 1),
                           ),
                           child: Text(
-                            AppStrings.strongestModuleLabel,
+                            AppStrings.strongestModuleLabel + AppStrings.waterCycleSubject,
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: AppColors.blue,

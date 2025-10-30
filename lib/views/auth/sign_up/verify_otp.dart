@@ -87,6 +87,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     );
 
     return Scaffold(
+         backgroundColor: AppColors.bgColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

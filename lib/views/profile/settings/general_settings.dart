@@ -7,6 +7,7 @@ import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
+import 'package:geography_geyser/views/home/homepage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class GeneralSettings_Screen extends StatefulWidget {
@@ -138,7 +139,9 @@ class _GeneralSettings_ScreenState extends State<GeneralSettings_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+        backgroundColor: AppColors.bgColor,
         title: Text(AppStrings.generalSetting, style: FontManager.titleText()),
       ),
       body: SafeArea(
@@ -181,24 +184,50 @@ class _GeneralSettings_ScreenState extends State<GeneralSettings_Screen> {
                   style: FontManager.titleText(color: AppColors.blue),
                 ),
                 AppSpacing.h40,
+                // name field
                 BuildTextField(
                   label: AppStrings.nameLabel,
                   hint: AppStrings.nameFieldValue,
                 ),
                 AppSpacing.h12,
+                // email field
                 BuildTextField(
+                  isReadOnly: true,
                   label: AppStrings.emailLabel,
                   hint: AppStrings.emailFieldValue,
                 ),
-                AppSpacing.h12,
+                AppSpacing.h8,
+                Divider(),
+                AppSpacing.h6,
+                //Enter password field
                 BuildTextField(
-                  label: AppStrings.currentPasswordLabel,
+                  label: AppStrings.enterPassword,
                   hint: AppStrings.currentPasswordEditLabel,
+                ),
+                AppSpacing.h4,
+                Row(
+                  children: [
+                    Icon(Icons.warning_amber_rounded, size: 12),
+
+                    AppSpacing.w6,
+                    Expanded(
+                      child: Text(
+                        AppStrings.genChangeWarning,
+                        style: FontManager.subSubtitleText(),
+                        softWrap: true,
+                        overflow: TextOverflow.visible,
+                      ),
+                    ),
+                  ],
                 ),
                 AppSpacing.h32,
                 CustomLoginButton(
                   text: AppStrings.saveChangesButton,
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePageScreen()),
+                    );
                     debugPrint("Save Changes Pressed");
                   },
                 ),

@@ -22,7 +22,9 @@ class _PassResetScreenState extends State<PassResetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+        backgroundColor: AppColors.bgColor,
         title: Text(
           AppStrings.resetPasswordTitle,
           style: FontManager.titleText(),

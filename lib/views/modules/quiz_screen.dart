@@ -159,7 +159,7 @@ class _QuizScreenState extends State<QuizScreen> {
     });
 
     // Auto-progress after 3 seconds
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 2), () {
       if (mounted) {
         if (currentQuestionIndex < totalQuestions - 1) {
           setState(() {
@@ -346,7 +346,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePageScreen(),
+                            builder: (context) => QuizResult_Screen(),
                           ),
                           (route) => false,
                         );

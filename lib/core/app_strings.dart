@@ -16,6 +16,7 @@ class AppStrings {
   // Normal Sign Up
   static const String logInTitle = "Login";
   static const String passwordLabel = "Password";
+  static const String enterPassword = "Enter Password";
   static const String passwordPlaceholder = "Enter your Password";
 
   static const String forgotPassword = "Forgot Password?";
@@ -102,7 +103,7 @@ class AppStrings {
       "Your account has been created successfully.";
 
   // --- Image 3: Home/Dashboard Screen ---
-  static const String strongestModuleLabel = "Strongest Module: Water Cycle";
+  static const String strongestModuleLabel = "Strongest Module: ";
   static const String averageScoreStatLabel = "Average Score";
   static const String averageScoreStatValue = "85%";
   static const String dailyQuizStreakLabel = "Daily Quiz Streak";
@@ -121,6 +122,8 @@ class AppStrings {
 
   // --- Image 1: Settings Options ---
   static const String generalSetting = "General Setting";
+  static const String genChangeWarning = "Enter password to apply the changes.";
+
   static const String privacySetting = "Privacy Setting";
 
   // --- Image 2: Logout Confirmation Dialog ---

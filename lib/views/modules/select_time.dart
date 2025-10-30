@@ -25,7 +25,9 @@ class _SelectTime_screenState extends State<SelectTime_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+        backgroundColor: AppColors.bgColor,
         title: Text(
           AppStrings.selectTimeTitle,
           style: FontManager.appBarText(),

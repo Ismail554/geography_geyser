@@ -19,6 +19,7 @@ class _RegCongratulations_ScreenState extends State<RegCongratulations_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+         backgroundColor: AppColors.bgColor,
       body: Padding(
         padding: EdgeInsets.all(8.0),
         child: SafeArea(

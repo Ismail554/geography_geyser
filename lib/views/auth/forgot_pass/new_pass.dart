@@ -18,7 +18,9 @@ class _NewPass_screenState extends State<NewPass_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+        backgroundColor: AppColors.bgColor.withOpacity(01),
         title: Text("Back", style: FontManager.appBarText()),
         centerTitle: false,
       ),

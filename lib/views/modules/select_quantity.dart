@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
@@ -23,7 +24,9 @@ class _SelectQuantityScreenState extends State<SelectQuantityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+        backgroundColor: AppColors.bgColor,
         title: Text(AppStrings.selectQuantity, style: FontManager.appBarText()),
         centerTitle: true,
       ),

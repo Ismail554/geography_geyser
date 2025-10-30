@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +29,12 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
+  String? _emailError;
+  String? _passwordError;
+  String? _confirmPasswordError;
+
   // Register function with API integration
   Future<void> registerUser(
     String fullName,
@@ -38,7 +42,7 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
     String password,
   ) async {
     final url = Uri.parse(
-      "https://dihydric-yael-therianthropic.ngrok-free.dev", // Your API URL
+      "https://dihydric-yael-therianthropic.ngrok-free.dev", //  API URL
     );
     final body = jsonEncode({
       'email': email,
@@ -182,16 +186,63 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                       hint: 'Enter Email',
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
+                      errorText: _emailError,
+                      onChanged: (value) {
+                        setState(() {
+                          if (value.isEmpty) {
+                            _emailError = 'Email is required';
+                          } else if (!value.contains('@')) {
+                            _emailError = 'Please enter a valid email';
+                          } else {
+                            _emailError = null;
+                          }
+                        });
+                      },
                     ),
                     AppSpacing.h16,
 
                     // Password Field
                     BuildTextField(
                       label: 'Password',
-                      obscureText: true,
+                      obscureText: _obscurePassword,
                       hint: 'Enter Password',
                       controller: _passwordController,
                       isPassword: true,
+                      errorText: _passwordError,
+                      onChanged: (value) {
+                        setState(() {
+                          if (value.isEmpty) {
+                            _passwordError = 'Password is required';
+                          } else if (value.length < 6) {
+                            _passwordError =
+                                'Password must be at least 6 characters';
+                          } else {
+                            _passwordError = null;
+                          }
+
+                          // Re-validate confirm password when password changes
+                          if (_confirmPasswordController.text.isNotEmpty) {
+                            if (_confirmPasswordController.text != value) {
+                              _confirmPasswordError = 'Passwords do not match';
+                            } else {
+                              _confirmPasswordError = null;
+                            }
+                          }
+                        });
+                      },
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: const Color(0xFF42A5F5),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                      ),
                     ),
                     AppSpacing.h16,
 
@@ -199,33 +250,86 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
                     BuildTextField(
                       label: 'Confirm Password',
                       hint: 'Enter Password',
-                      obscureText: true,
+                      obscureText: _obscureConfirmPassword,
                       controller: _confirmPasswordController,
                       isPassword: true,
+                      errorText: _confirmPasswordError,
+                      onChanged: (value) {
+                        setState(() {
+                          if (value.isEmpty) {
+                            _confirmPasswordError =
+                                'Confirm password is required';
+                          } else if (value != _passwordController.text) {
+                            _confirmPasswordError = 'Passwords do not match';
+                          } else {
+                            _confirmPasswordError = null;
+                          }
+                        });
+                      },
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureConfirmPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: const Color(0xFF42A5F5),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureConfirmPassword = !_obscureConfirmPassword;
+                          });
+                        },
+                      ),
                     ),
                     AppSpacing.h16,
 
                     // Sign Up Button
                     CustomLoginButton(
                       onPressed: () {
-                        // if (validateFields()) {
+                        // Trigger validations if fields are empty
+                        setState(() {
+                          if (_emailController.text.isEmpty) {
+                            _emailError = 'Email is required';
+                          }
+                          if (_passwordController.text.isEmpty) {
+                            _passwordError = 'Password is required';
+                          }
+                          if (_confirmPasswordController.text.isEmpty) {
+                            _confirmPasswordError =
+                                'Confirm password is required';
+                          }
+                          // Basic format checks
+                          if (_emailController.text.isNotEmpty &&
+                              !_emailController.text.contains('@')) {
+                            _emailError = 'Please enter a valid email';
+                          }
+                          if (_passwordController.text.isNotEmpty &&
+                              _passwordController.text.length < 6) {
+                            _passwordError =
+                                'Password must be at least 6 characters';
+                          }
+                          if (_confirmPasswordController.text.isNotEmpty &&
+                              _confirmPasswordController.text !=
+                                  _passwordController.text) {
+                            _confirmPasswordError = 'Passwords do not match';
+                          }
+                        });
 
-                        //   registerUser(
-                        //     _fullNameController.text,
-                        //     _emailController.text,
-                        //     _passwordController.text,
-                        //   );
-                        // Navigate to VerifyOtpScreen after successful registration
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => VerifyOtpScreen(),
-                          ),
-                        );
-                        // } else {
-                        //   // Show validation error
-                        //   debugPrint('Please fill in all fields correctly');
-                        // }
+                        final isValid =
+                            _emailError == null &&
+                            _passwordError == null &&
+                            _confirmPasswordError == null &&
+                            _emailController.text.isNotEmpty &&
+                            _passwordController.text.isNotEmpty &&
+                            _confirmPasswordController.text.isNotEmpty;
+
+                        if (isValid) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VerifyOtpScreen(),
+                            ),
+                          );
+                        }
                       },
                       text: AppStrings.signUpButton,
                     ),

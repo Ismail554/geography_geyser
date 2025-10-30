@@ -14,6 +14,7 @@ class BuildTextField extends StatelessWidget {
   final bool obscureText;
   final String? errorText;
   final Color bgcolor;
+  final bool isReadOnly;
   final Function(String)? onChanged;
 
   const BuildTextField({
@@ -28,7 +29,8 @@ class BuildTextField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.errorText,
-    this.onChanged,
+    this.onChanged, 
+     this.isReadOnly = false,
   });
 
   @override
@@ -50,6 +52,7 @@ class BuildTextField extends StatelessWidget {
 
         // Input field
         TextField(
+          readOnly: isReadOnly,
           controller: controller,
           keyboardType: keyboardType,
           obscureText: isPassword ? obscureText : false,

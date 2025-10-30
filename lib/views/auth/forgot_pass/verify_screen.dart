@@ -30,7 +30,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic( Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (_resendTimer > 0) {
         setState(() {
           _resendTimer--;
@@ -88,12 +88,13 @@ class _VerifyScreenState extends State<VerifyScreen> {
     );
 
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(12.0),
+                padding: EdgeInsets.only(left: 16.r, right: 16.r),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: InkWell(
@@ -109,146 +110,129 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700),
               ),
               Text(AppStrings.almostDone),
-              AppSpacing.h16,
+              AppSpacing.h12,
               Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(20.r),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
+                padding: EdgeInsets.all(16.0.r),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        "assets/images/security_vec.png",
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.contain,
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Image.asset(
-                          "assets/images/security_vec.png",
-                          width: 120.w,
-                          height: 120.h,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+                    ),
 
-                      AppSpacing.h12,
-                      Text(
-                        AppStrings.verificationCodePrompt,
-                        style: FontManager.bigTitle(),
-                      ),
-                      AppSpacing.h16,
-                      Text(
-                        AppStrings.verificationCodeSent,
-                        style: FontManager.subtitleText(),
-                      ),
-                      AppSpacing.h10,
-                      Text(
-                        AppStrings.otpInstructionEmailExample,
-                        style: FontManager.subSubtitleText(),
-                      ),
-                      AppSpacing.h32,
-                      Center(
-                        child: Pinput(
-                          controller: _pinController,
-                          focusNode: _pinFocusNode,
-                          length: 6,
-                          defaultPinTheme: defaultPinTheme,
-                          focusedPinTheme: focusedPinTheme,
-                          submittedPinTheme: submittedPinTheme,
-                          pinAnimationType: PinAnimationType.fade,
-                          hapticFeedbackType: HapticFeedbackType.lightImpact,
-                          onCompleted: (pin) {
-                            debugPrint('Completed: $pin');
-                          },
-                          onChanged: (value) {
-                            debugPrint('Changed: $value');
-                          },
-                          cursor: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(bottom: 8.h),
-                                width: 22.w,
-                                height: 1.h,
-                                color: AppColors.buttonColor,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      AppSpacing.h24,
-                      RichText(
-                        text: TextSpan(
-                          text: AppStrings.didntReceiveCode,
-                          style: FontManager.bodyText(),
+                    AppSpacing.h4,
+                    Text(
+                      AppStrings.verificationCodePrompt,
+                      style: FontManager.bigTitle(),
+                    ),
+                    AppSpacing.h16,
+                    Text(
+                      AppStrings.verificationCodeSent,
+                      style: FontManager.subtitleText(),
+                    ),
+                    AppSpacing.h10,
+                    Text(
+                      AppStrings.otpInstructionEmailExample,
+                      style: FontManager.subSubtitleText(),
+                    ),
+                    AppSpacing.h32,
+                    Center(
+                      child: Pinput(
+                        controller: _pinController,
+                        focusNode: _pinFocusNode,
+                        length: 6,
+                        defaultPinTheme: defaultPinTheme,
+                        focusedPinTheme: focusedPinTheme,
+                        submittedPinTheme: submittedPinTheme,
+                        pinAnimationType: PinAnimationType.fade,
+                        hapticFeedbackType: HapticFeedbackType.lightImpact,
+                        onCompleted: (pin) {
+                          debugPrint('Completed: $pin');
+                        },
+                        onChanged: (value) {
+                          debugPrint('Changed: $value');
+                        },
+                        cursor: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            TextSpan(
-                              text: ' ${AppStrings.resendOTPCode}',
-                              style: FontManager.bodyText(
-                                color: AppColors.buttonColor,
-                              ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 8.h),
+                              width: 22.w,
+                              height: 1.h,
+                              color: AppColors.buttonColor,
                             ),
                           ],
                         ),
                       ),
-                      AppSpacing.h10,
-                      // Verify Button
-                      SizedBox(
-                        width: double.infinity,
-                        height: 46.h,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (_pinController.text.length == 6) {
-                              debugPrint(
-                                'Verifying PIN: ${_pinController.text}',
-                              );
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NewPass_screen(),
-                                ),
-                              );
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.buttonColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                            elevation: 0,
-                          ),
-                          child: Text(
-                            'Verify Account',
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      AppSpacing.h20,
-                      // Resend Code Timer
-                      Text(
-                        'Resend code in ${_resendTimer}s',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
-                      ),
+                    ),
 
-                      // Help Text
-                    ],
-                  ),
+                    AppSpacing.h24,
+                    RichText(
+                      text: TextSpan(
+                        text: AppStrings.didntReceiveCode,
+                        style: FontManager.bodyText(),
+                        children: [
+                          TextSpan(
+                            text: ' ${AppStrings.resendOTPCode}',
+                            style: FontManager.bodyText(
+                              color: AppColors.buttonColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    AppSpacing.h10,
+                    // Verify Button
+                    SizedBox(
+                      width: double.infinity,
+                      height: 46.h,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_pinController.text.length == 6) {
+                            debugPrint('Verifying PIN: ${_pinController.text}');
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NewPass_screen(),
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.buttonColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          'Verify Account',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    AppSpacing.h20,
+                    // Resend Code Timer
+                    Text(
+                      'Resend code in ${_resendTimer}s',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87,
+                      ),
+                    ),
+
+                    // Help Text
+                  ],
                 ),
               ),
             ],
