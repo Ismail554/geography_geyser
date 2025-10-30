@@ -4,16 +4,18 @@ import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 
 class Custom_Q_quantity extends StatelessWidget {
+ 
   final int question;
   final VoidCallback? onPressed;
   final bool isSelected;
 
   const Custom_Q_quantity({
     super.key,
-    required this. question,
+    required this.question,
     this.onPressed,
     this.isSelected = false,
     String? text,
+
   });
 
   @override

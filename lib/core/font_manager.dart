@@ -34,12 +34,12 @@ class FontManager {
   );
   // Big bold title
   static TextStyle bigTitle({
-     double fontSize = 14,
+    double fontSize = 16,
     Color color = Colors.black,
   }) => GoogleFonts.notoSans(
     fontSize: fontSize.sp,
     fontWeight: FontWeight.w800,
-    color:color,
+    color: color,
   );
   // Title Text
   static TextStyle titleText({Color color = mainTextColor}) => TextStyle(
@@ -52,7 +52,7 @@ class FontManager {
   );
   // Subtitle Text
   static TextStyle subtitleText({
-    double fontSize = 14,
+    double fontSize = 16,
     Color color = Colors.grey,
     double height = 1,
   }) => GoogleFonts.montserrat(
@@ -140,12 +140,12 @@ class FontManager {
 
   // Button Text
   static TextStyle buttonText() => TextStyle(
-    fontFamily: inter,
+    fontFamily: "SegoeUI",
     fontSize: 16.sp,
-    fontWeight: w700,
-    color: mainTextColor,
+    fontWeight: w800,
+    color: Colors.white,
     height: 1.0,
-    letterSpacing: 0.0,
+    letterSpacing: 0.9,
   );
 
   // AppBar Text

@@ -7,12 +7,13 @@ import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/home/homepage.dart';
 import 'package:geography_geyser/views/modules/quiz_result.dart';
-import 'package:geography_geyser/views/modules/select_quantity.dart';
+import 'package:geography_geyser/views/modules/time_out_dialog.dart';
 
 class QuizScreen extends StatefulWidget {
-  final int? selectedIndex;
+  final int? totalQuestions;
+  final int? timeInMinutes;
 
-  const QuizScreen({super.key, this.selectedIndex});
+  const QuizScreen({super.key, this.totalQuestions, this.timeInMinutes});
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -21,9 +22,8 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   // Quiz state variables
   int currentQuestionIndex = 0;
-  int totalQuestions = 10; // Set to 10 for testing
-  int timeRemaining =
-      300; // Default 5 minutes, will be updated from selected time
+  late int totalQuestions;
+  late int timeRemaining;
   int? selectedAnswerIndex;
   Timer? _timer;
   bool showAnswerFeedback = false;
@@ -96,7 +96,18 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void initState() {
     super.initState();
+    // Initialize total questions and time based on selected options
+    _initializeQuizSettings();
     startTimer();
+  }
+
+  void _initializeQuizSettings() {
+    // Set total questions from passed value
+    totalQuestions = widget.totalQuestions ?? 10; // Default value
+
+    // Set time from passed value (convert minutes to seconds)
+    final minutes = widget.timeInMinutes ?? 5; // Default 5 minutes
+    timeRemaining = minutes * 60;
   }
 
   @override
@@ -113,7 +124,20 @@ class _QuizScreenState extends State<QuizScreen> {
         });
       } else {
         timer.cancel();
-        // Handle time up
+        // Handle time up - show timeout dialog
+        if (mounted) {
+          TimeoutDialog.show(
+            context,
+            onOkPressed: () {
+              Navigator.of(context).pop(); // Close dialog
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => QuizResult_Screen()),
+                (route) => false,
+              );
+            },
+          );
+        }
       }
     });
   }
@@ -300,7 +324,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         Navigator.of(context).pop(); // Close dialog
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.white,
+                        backgroundColor: AppColors.black,
                         foregroundColor: AppColors.black,
                         side: BorderSide(color: AppColors.blue),
                         padding: EdgeInsets.symmetric(vertical: 12.h),

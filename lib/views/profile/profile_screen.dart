@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geography_geyser/core/app_colors.dart';
@@ -6,7 +7,7 @@ import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
 import 'package:geography_geyser/views/home/op_mod_settings.dart';
-import 'package:geography_geyser/views/profile/edit_profile_op.dart';
+import 'package:geography_geyser/views/modules/quiz_result.dart';
 import 'package:geography_geyser/views/profile/settings/general_settings.dart';
 import 'package:geography_geyser/views/profile/settings/privacy_settings.dart';
 
@@ -25,24 +26,26 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back Button
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  children: [
-                    Icon(Icons.arrow_back, color: Colors.black),
-                    AppSpacing.w8,
-                    Text(
-                      'Back',
-                      style: FontManager.bodyText(color: Colors.black),
-                    ),
-                  ],
+              // Back Button (only show when navigated to as a pushed screen)
+              if (hideSettingsCard) ...[
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.arrow_back, color: AppColors.black),
+                      AppSpacing.w8,
+                      Text(
+                        AppStrings.backButton,
+                        // 'Back',
+                        style: FontManager.bodyText(color: AppColors.black),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-
-              AppSpacing.h24,
+                AppSpacing.h24,
+              ],
 
               // Profile Header
               buildProfileHeader(),
@@ -111,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppColors.black.withOpacity(0.05),
             blurRadius: 8,
             offset: Offset(0, 2),
           ),
@@ -368,7 +371,7 @@ class ProfileScreen extends StatelessWidget {
                   child: TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.grey[200],
+                      backgroundColor: AppColors.bgColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.r),
                       ),
@@ -376,7 +379,9 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Text(
                       AppStrings.cancelButton,
-                      style: FontManager.bodyText(color: Colors.black),
+                      style: FontManager.buttonText().copyWith(
+                        color: AppColors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -401,7 +406,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Text(
                       AppStrings.logOutButton,
-                      style: FontManager.bodyText(color: Colors.white),
+                      style: FontManager.buttonText(),
                     ),
                   ),
                 ),
@@ -413,3 +418,79 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
+// void showTimeoutDialog(BuildContext context) {
+//   showDialog(
+//     context: context,
+//     barrierDismissible: false,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(16.r),
+//         ),
+//         contentPadding: EdgeInsets.all(24.w),
+//         content: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: [
+//             // Clock Icon
+//             Container(
+//               width: 60.w,
+//               height: 60.h,
+//               decoration: BoxDecoration(
+//                 color: Colors.red.shade50,
+//                 shape: BoxShape.circle,
+//               ),
+//               child: Icon(
+//                 Icons.access_time_rounded,
+//                 color: Colors.red,
+//                 size: 32.sp,
+//               ),
+//             ),
+//             AppSpacing.h20,
+
+//             // Title
+//             Text(
+//               AppStrings.timeUp,
+//               style: FontManager.bigTitle(),
+//               textAlign: TextAlign.center,
+//             ),
+
+//             AppSpacing.h14,
+
+//             // Description
+//             Text(
+//               AppStrings.timeUpwarning,
+//               style: FontManager.bodyText(color: AppColors.grey),
+//               textAlign: TextAlign.center,
+//             ),
+
+//             AppSpacing.h24,
+
+//             // Ok Button
+//             SizedBox(
+//               width: double.infinity,
+//               child: ElevatedButton(
+//                 onPressed: () => Navigator.push(
+//                   context,
+//                   MaterialPageRoute(builder: (context) => QuizResult_Screen()),
+//                 ),
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor: Color(0xFF4A90E2), // Blue color
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(8.r),
+//                   ),
+//                   padding: EdgeInsets.symmetric(vertical: 14.h),
+//                   elevation: 0,
+//                 ),
+//                 child: Text(
+//                   AppStrings.cancelButton, // Or use "Ok" directly
+//                   style: FontManager.bodyText(color: Colors.white),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }

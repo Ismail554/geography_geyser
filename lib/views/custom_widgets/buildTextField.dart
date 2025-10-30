@@ -52,8 +52,7 @@ class BuildTextField extends StatelessWidget {
         TextField(
           controller: controller,
           keyboardType: keyboardType,
-
-          obscureText: obscureText || isPassword,
+          obscureText: isPassword ? obscureText : false,
           onChanged: onChanged,
           decoration: InputDecoration(
             filled: true,

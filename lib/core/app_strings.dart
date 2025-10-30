@@ -17,6 +17,7 @@ class AppStrings {
   static const String logInTitle = "Login";
   static const String passwordLabel = "Password";
   static const String passwordPlaceholder = "Enter your Password";
+
   static const String forgotPassword = "Forgot Password?";
   static const String logInButton = "Login";
   static const String orLoginWith = "OR Login With";
@@ -31,7 +32,7 @@ class AppStrings {
   static const String forgotPasswordInstruction =
       "Please enter the email used to create your account"; // Note: "passwprd" is a typo in the original image
   static const String emailLabel = "Email";
-  static const String emailPlaceholder = "Enter Email";
+  static const String emailPlaceholder = "Enter your email";
   static const String backToLogin = "Back to Login";
 
   // --- Screen 2 & 3: Forgot_Pass_02 & Forgot_Pass_03 (OTP Verification) ---
@@ -265,4 +266,8 @@ class AppStrings {
 
   static const String passSubtitle =
       "Your password has been changed successfully.";
+
+  static const String timeUp = "Time's Up!";
+  static const String timeUpwarning =
+      "The clock ran out — quiz ended automatically";
 }

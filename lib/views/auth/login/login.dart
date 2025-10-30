@@ -90,7 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Login',
+                          AppStrings.logInButton,
+                          // 'Login',
                           style: TextStyle(
                             fontSize: 32.sp,
                             fontWeight: FontWeight.w800,
@@ -101,8 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Email Field
                         BuildTextField(
-                          label: 'Email',
-                          hint: 'Enter your email',
+                          label: AppStrings.emailLabel,
+                          hint: AppStrings.emailPlaceholder,
                           controller: emailController,
                           errorText: _emailError,
                           onChanged: (value) {

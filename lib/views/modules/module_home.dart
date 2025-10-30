@@ -7,7 +7,8 @@ import 'package:geography_geyser/views/home/homepage.dart';
 import 'package:geography_geyser/views/modules/select_time.dart';
 
 class ModuleHome_screen extends StatefulWidget {
-  const ModuleHome_screen({super.key});
+  final bool hideback;
+  const ModuleHome_screen({super.key, this.hideback = false});
 
   @override
   State<ModuleHome_screen> createState() => _ModuleHome_screenState();
@@ -36,16 +37,20 @@ class _ModuleHome_screenState extends State<ModuleHome_screen> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePageScreen()),
-              (route) => false,
-            );
-          },
-        ),
+        leading: widget.hideback
+            ? IconButton(
+                icon: InkWell(child: Icon(Icons.arrow_back)),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomePageScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
+              )
+            : null,
         title: Text(
           AppStrings.selectModuleTitle,
           style: FontManager.boldHeading(color: AppColors.black),
@@ -55,7 +60,7 @@ class _ModuleHome_screenState extends State<ModuleHome_screen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               children: List.generate(moduleOptions.length, (index) {
                 final moduleText = moduleOptions[index];

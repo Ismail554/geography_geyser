@@ -9,17 +9,18 @@ import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/modules/select_quantity.dart';
 
 class SelectTime_screen extends StatefulWidget {
-  const SelectTime_screen({super.key});
+  final int? selectedQuantityIndex;
+
+  const SelectTime_screen({super.key, this.selectedQuantityIndex});
 
   @override
   State<SelectTime_screen> createState() => _SelectTime_screenState();
 }
 
 class _SelectTime_screenState extends State<SelectTime_screen> {
-  
   int? selectedIndex; //  Tracks which timer is selected
 
-  final List<int> timeOptions = [5, 10, 15, 20, 25, 30];
+  final List<int> timeOptions = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30];
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +86,16 @@ class _SelectTime_screenState extends State<SelectTime_screen> {
               CustomLoginButton(
                 text: AppStrings.continueButton,
                 onPressed: () {
+                  // Pass the actual time value (in minutes) instead of index
+                  final selectedTime = selectedIndex != null
+                      ? timeOptions[selectedIndex!]
+                      : null;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SelectQuantityScreen(),
+                      builder: (context) => SelectQuantityScreen(
+                        selectedTimeInMinutes: selectedTime,
+                      ),
                     ),
                   );
                 },

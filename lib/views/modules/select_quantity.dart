@@ -7,8 +7,9 @@ import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/modules/quiz_screen.dart';
 
 class SelectQuantityScreen extends StatefulWidget {
+  final int? selectedTimeInMinutes;
 
-  const SelectQuantityScreen({super.key,});
+  const SelectQuantityScreen({super.key, this.selectedTimeInMinutes});
 
   @override
   State<SelectQuantityScreen> createState() => _SelectQuantityScreenState();
@@ -17,7 +18,7 @@ class SelectQuantityScreen extends StatefulWidget {
 class _SelectQuantityScreenState extends State<SelectQuantityScreen> {
   int? selectedIndex;
 
-  final List<int> quantityOptions = [10, 20, 30, 40, 50, 60, 70, 80];
+  final List<int> quantityOptions = [5, 10, 15, 20, 25, 30, 35, 40];
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +75,18 @@ class _SelectQuantityScreenState extends State<SelectQuantityScreen> {
               CustomLoginButton(
                 text: AppStrings.continueButton,
                 onPressed: () {
+                  // Pass the actual values instead of indices
+                  final selectedQuantity = selectedIndex != null
+                      ? quantityOptions[selectedIndex!]
+                      : null;
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => QuizScreen(selectedIndex: selectedIndex,)),
+                    MaterialPageRoute(
+                      builder: (context) => QuizScreen(
+                        totalQuestions: selectedQuantity,
+                        timeInMinutes: widget.selectedTimeInMinutes,
+                      ),
+                    ),
                   );
                 },
               ),
