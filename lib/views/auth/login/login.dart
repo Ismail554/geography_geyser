@@ -5,12 +5,14 @@ import 'package:geography_geyser/core/app_colors.dart';
 import 'package:geography_geyser/core/app_spacing.dart';
 import 'package:geography_geyser/core/app_strings.dart';
 import 'package:geography_geyser/core/font_manager.dart';
+import 'package:geography_geyser/provider/auth_provider.dart';
 import 'package:geography_geyser/views/auth/forgot_pass/pass_reset.dart';
 import 'package:geography_geyser/views/auth/sign_up/geo_sign_up.dart';
 import 'package:geography_geyser/views/custom_widgets/buildTextField.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/custom_widgets/google_login_btn.dart';
 import 'package:geography_geyser/views/home/homepage.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,11 +26,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
 
   bool _obscurePassword = true;
-  String? _emailError;
-  String? _passwordError;
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       backgroundColor: AppColors.splashBG,
       resizeToAvoidBottomInset: true,
@@ -105,17 +107,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           label: AppStrings.emailLabel,
                           hint: AppStrings.emailPlaceholder,
                           controller: emailController,
-                          errorText: _emailError,
+                          errorText: authProvider.emailError,
                           onChanged: (value) {
-                            setState(() {
-                              if (value.isEmpty) {
-                                _emailError = 'Email is required';
-                              } else if (!value.contains('@')) {
-                                _emailError = 'Please enter a valid email';
-                              } else {
-                                _emailError = null;
-                              }
-                            });
+                            // Clear error on change
+                            authProvider.clearErrors();
                           },
                         ),
                         AppSpacing.h16,
@@ -127,18 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: passwordController,
                           isPassword: true,
                           obscureText: _obscurePassword,
-                          errorText: _passwordError,
+                          errorText: authProvider.passwordError,
                           onChanged: (value) {
-                            setState(() {
-                              if (value.isEmpty) {
-                                _passwordError = 'Password is required';
-                              } else if (value.length < 6) {
-                                _passwordError =
-                                    'Password must be at least 6 characters';
-                              } else {
-                                _passwordError = null;
-                              }
-                            });
+                            // Clear error on change
+                            authProvider.clearErrors();
                           },
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -155,6 +142,41 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         AppSpacing.h4,
+
+                        // Error Message Display
+                        if (authProvider.errorMessage != null)
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.w,
+                              vertical: 12.h,
+                            ),
+                            margin: EdgeInsets.only(bottom: 16.h),
+                            decoration: BoxDecoration(
+                              color: Colors.red.shade50,
+                              borderRadius: BorderRadius.circular(8.r),
+                              border: Border.all(color: Colors.red.shade200),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.error_outline,
+                                  color: Colors.red.shade700,
+                                  size: 20.sp,
+                                ),
+
+                                AppSpacing.w8,
+                                Expanded(
+                                  child: Text(
+                                    authProvider.errorMessage!,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Colors.red.shade700,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
 
                         // Forgot Password
                         Align(
@@ -183,20 +205,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Login Button
                         CustomLoginButton(
                           text: AppStrings.logInTitle,
-                          onPressed: () {
-                            // Check if all fields are valid
-                            if (_emailError == null &&
-                                _passwordError == null &&
-                                emailController.text.isNotEmpty &&
-                                passwordController.text.isNotEmpty) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePageScreen(),
-                                ),
-                              );
-                            }
-                          },
+                          isLoading: authProvider.isLoading,
+                          onPressed: authProvider.isLoading
+                              ? null
+                              : () async {
+                                  authProvider.clearErrors();
+
+                                  final success = await authProvider.loginUser(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text,
+                                  );
+
+                                  if (success && mounted) {
+                                    // Navigate to home page on success
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePageScreen(),
+                                      ),
+                                    );
+                                  }
+                                },
                         ),
                         AppSpacing.h20,
 
