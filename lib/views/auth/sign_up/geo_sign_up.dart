@@ -10,10 +10,6 @@ import 'package:geography_geyser/views/custom_widgets/google_login_btn.dart';
 import 'package:geography_geyser/views/custom_widgets/custom_login_button.dart';
 import 'package:geography_geyser/views/auth/login/login.dart';
 import 'package:geography_geyser/views/auth/sign_up/verify_otp.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'dart:convert'; // JSON decode korar jonno
 
 class GeoSignUpScreen extends StatefulWidget {
   const GeoSignUpScreen({super.key});
@@ -34,49 +30,6 @@ class _GeoSignUpScreenState extends State<GeoSignUpScreen> {
   String? _emailError;
   String? _passwordError;
   String? _confirmPasswordError;
-
-  // Register function with API integration
-  Future<void> registerUser(
-    String fullName,
-    String email,
-    String password,
-  ) async {
-    final url = Uri.parse(
-      "https://dihydric-yael-therianthropic.ngrok-free.dev", //  API URL
-    );
-    final body = jsonEncode({
-      'email': email,
-      'full_name': fullName,
-      'password': password,
-    });
-    final headers = {'Content-Type': 'application/json'};
-
-    try {
-      final response = await http.post(url, headers: headers, body: body);
-
-      if (response.statusCode == 201) {
-        // Status code 201 indicates created successfully
-        final responseData = jsonDecode(response.body);
-        print('Success: ${responseData['message']}');
-
-        // ID and Verification Token
-        String userId = responseData['user']['id'];
-        String verificationToken = responseData['verificationToken'];
-
-        // Store the ID and token using SharedPreferences
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('user_id', userId);
-        await prefs.setString('verification_token', verificationToken);
-
-        debugPrint('User registered successfully, data stored.');
-      } else {
-        print('Error: ${response.statusCode}');
-        print('Message: ${response.body}');
-      }
-    } catch (e) {
-      debugPrint('Error: $e');
-    }
-  }
 
   // Dispose controllers to avoid memory leaks
   @override

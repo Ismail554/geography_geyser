@@ -40,13 +40,13 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  AppSpacing.h60,
+                  AppSpacing.h64,
 
                   // Logo & Title
                   Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(bottom: 18.h),
+                        // margin: EdgeInsets.only(bottom: 18.h),
                         width: 100.w,
                         height: 100.h,
 
@@ -71,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       AppSpacing.h24,
                     ],
                   ),
+                  AppSpacing.h10,
 
                   // Login Form Section
                   Container(

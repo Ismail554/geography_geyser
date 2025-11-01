@@ -5,12 +5,36 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geography_geyser/core/api_endpoints.dart';
 
 class LoginAuthService {
+  // 🔧 Dev Mode: Set to true to enable API calls, false to disable (for offline development)
+  static const bool isDevMode = true; // Change to false to disable login API
+
   /// Performs login API call and returns the result
   /// Returns Map with keys: 'success' (bool), 'message' (String), 'data' (Map?)
   static Future<Map<String, dynamic>> login({
     required String email,
     required String password,
   }) async {
+    // If dev mode is disabled, return mock success response
+    if (!isDevMode) {
+      log(
+        '⚠️ Dev Mode: Login API is disabled - returning mock response',
+        name: 'LOGIN_AUTH',
+      );
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('access_token', 'dev_mock_token');
+      await prefs.setString('refresh_token', 'dev_mock_refresh_token');
+      await prefs.setString('user_email', email.trim());
+
+      return {
+        'success': true,
+        'message': 'Login successful (Dev Mode - API Disabled)',
+        'data': {
+          'access_token': 'dev_mock_token',
+          'refresh_token': 'dev_mock_refresh_token',
+        },
+      };
+    }
+
     try {
       final url = Uri.parse(ApiEndpoints.loginUrl);
       final body = jsonEncode({'email': email.trim(), 'password': password});
